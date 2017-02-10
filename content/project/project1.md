@@ -90,7 +90,7 @@ library(cowplot)
 DT.expr1 <- fread('expr')
 sample.names <- c('miRNAs', '37', '40', '58', '59', '63', '69', '49', '50', '64', '67', '68', '79', '70', '72', '73', '75', '90', '91')
 setnames(DT.expr1, sample.names)
-DT.expr1 <- melt(DT.expr1, id = 1, variable.name = 'sample.name')
+DT.expr1.raw.m <- melt(DT.expr1, id = 1, variable.name = 'sample.name')
 ```
 
 {{% alert note %}}
@@ -112,9 +112,9 @@ And keep in mind that the order of loading the packages makes a difference, i.e.
 Let's move on. Make graphics now:
 
 ```R
-density.raw <- ggdraw(ggplot(data = DT.expr1, aes(value, colour = sample.name)) + geom_density() + scale_x_continuous(trans = 'log2')) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
+density.raw <- ggdraw(ggplot(data = DT.expr1.raw.m, aes(value, colour = sample.name)) + geom_density() + scale_x_continuous(trans = 'log2')) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
 save_plot('figures/density.raw.png', density.raw, base_height = 8.5, base_width = 11)
-boxplot.raw <- ggdraw(ggplot(data = DT.expr1, aes(sample.name, value)) + geom_boxplot(notch = TRUE) + scale_y_continuous(trans = 'log2')) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
+boxplot.raw <- ggdraw(ggplot(data = DT.expr1.raw.m, aes(sample.name, value)) + geom_boxplot(notch = TRUE) + scale_y_continuous(trans = 'log2')) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
 save_plot('figures/boxplot.raw.png', boxplot.raw, base_height = 8.5, base_width = 11)
 ```
 
@@ -128,4 +128,80 @@ Why use such size for figures?
 
 > About figure size: Each figure should be able to fit on a single 8.5 x 11 inch page. Please do not send figure panels as individual files. We use three standard widths for figures: 1 column, 85 mm; 1.5 column, 114 mm; and 2 column, 174 mm (the full width of the page). Although your figure size may be reduced in the print journal, please keep these widths in mind. For Previews and other three-column formats, these widths are also applicable, though the width of a single column will be 55 mm. --From [Cell Press Digital Image Guidelines (click to see details)](http://www.cell.com/figureguidelines).
 
+Width, height, which comes first?
+
+What comes first?
+
+As a rule of thumb, the Graphics’ industry standard is width by height (width x height). Meaning that when you write your measurements, you write them from your point of view, beginning with the width.
+
+Layout orientation-wise using a letter-sized paper,
+8.5×11 = portrait
+11×8.5 = landscape
+
+Width x Height
+Width = top margin
+Height = left margin
+
 For online review in-house, I use `png` format instead of `tiff`, which will be reproduced later to remove watermark and meet conditions for publishing as many of them just for a passing glance :smile:
+
+Let's perform constant normalization first.
+
+```R
+source('~/github.com/bioinformatist/research_projects/project1/scripts/normalization.R')
+
+SD.pos <- 2:dim(DT.expr1)[2]
+# The parentheses make the result to be assigned to the column specified in SD.pos, instead of some new variable named SD.pos
+# function lapply is better for .SD in data.table
+DT.expr1.normalized.constant <- DT.expr1[, (SD.pos) := lapply(.SD, NormalizeconstantAsCol), .SDcols = SD.pos]
+```
+
+{{% alert warning %}}
+Generally, index like `-1` can be used as the value of `.SDcols`, but when used as LHS of `:=`, it will raise an error:
+*LHS of := appears to be column positions but are outside [1,ncol] range. New columns can only be added by name.*
+{{% /alert %}}
+
+```R
+DT.expr1.normalized.constant.m <- melt(DT.expr1.normalized.constant, id = 1, variable.name = 'sample.name')
+density.normalized.constant <- ggdraw(ggplot(data = DT.expr1.normalized.constant.m, aes(value, colour = sample.name)) + geom_density() + scale_x_continuous(trans = 'log2')) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
+save_plot('figures/density.normalized.constant.png', density.normalized.constant, base_height = 8.5, base_width = 11)
+boxplot.normalized.constant <- ggdraw(ggplot(data = DT.expr1.normalized.constant.m, aes(sample.name, value)) + geom_boxplot(notch = TRUE) + scale_y_continuous(trans = 'log2')) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
+save_plot('figures/boxplot.normalized.constant.png', boxplot.normalized.constant, base_height = 8.5, base_width = 11)
+```
+
+The density plot of data processed by constant normalization:
+![density.normalized.constant.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/density.normalized.constant.png)
+
+The boxplot of data by constant normalization:
+![boxplot.normalized.constant.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/boxplot.normalized.constant.png)
+
+Then try quantile normalization:
+
+```R
+library(preprocessCore)
+DT.expr1.normalized.quantile <- DT.expr1[,c(list(miRNAs, normalize.quantiles(as.matrix(.SD)))), .SDcol = SD.pos]
+setnames(DT.expr1.normalized.quantile, sample.names)
+
+DT.expr1.normalized.quantile.m <- melt(DT.expr1.normalized.quantile, id = 1, variable.name = 'sample.name')
+density.normalized.quantile <- ggdraw(ggplot(data = DT.expr1.normalized.quantile.m, aes(value, colour = sample.name)) + geom_density() + scale_x_continuous(trans = 'log2')) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
+save_plot('figures/density.normalized.quantile.png', density.normalized.quantile, base_height = 8.5, base_width = 11)
+boxplot.normalized.quantile <- ggdraw(ggplot(data = DT.expr1.normalized.quantile.m, aes(sample.name, value)) + geom_boxplot(notch = TRUE) + scale_y_continuous(trans = 'log2')) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
+save_plot('figures/boxplot.normalized.quantile.png', boxplot.normalized.quantile, base_height = 8.5, base_width = 11)
+```
+
+The density plot of data processed by quantile normalization:
+![density.normalized.quantile.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/density.normalized.quantile.png)
+
+The boxplot of data by quantile normalization:
+![boxplot.normalized.quantile.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/boxplot.normalized.quantile.png)
+
+Finally, let's output a summary:
+
+```R
+summary.plot <- plot_grid(density.raw, boxplot.raw, density.normalized.constant, boxplot.normalized.constant, density.normalized.quantile, boxplot.normalized.quantile, labels = c('R', 'R', 'C', 'C', 'Q', 'Q'), nrow = 3, align = 'v')
+save_plot('figures/summary.png', summary.plot, base_height = 10 * 1.3, base_width = 10 * 1.3)
+```
+
+Summary plot:
+![summary.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/summary.png)
+
+According to this summary, the expression matrix processed by quantile normalization, i.e. `DT.expr1.normalized.quantile` was chosen as the input for the downstream analysis.
