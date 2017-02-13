@@ -15,6 +15,7 @@ image = ""
   - [Count numbers for each type of miRNAs/probes](#count-numbers-for-each-type-of-mirnasprobes)
   - [Extract expression matrix from raw data](#extract-expression-matrix-from-raw-data)
   - [Normalize expression matrix](#normalize-expression-matrix)
+  - [Principle components analysis](#principle-components-analysis)
 
 <!-- TOC END -->
 
@@ -128,7 +129,7 @@ Why use such size for figures?
 
 > About figure size: Each figure should be able to fit on a single 8.5 x 11 inch page. Please do not send figure panels as individual files. We use three standard widths for figures: 1 column, 85 mm; 1.5 column, 114 mm; and 2 column, 174 mm (the full width of the page). Although your figure size may be reduced in the print journal, please keep these widths in mind. For Previews and other three-column formats, these widths are also applicable, though the width of a single column will be 55 mm. --From [Cell Press Digital Image Guidelines (click to see details)](http://www.cell.com/figureguidelines).
 
-Width, height, which comes first?
+Width and height, which comes first?
 
 What comes first?
 
@@ -151,7 +152,7 @@ source('~/github.com/bioinformatist/research_projects/project1/scripts/normaliza
 
 SD.pos <- 2:dim(DT.expr1)[2]
 # The parentheses make the result to be assigned to the column specified in SD.pos, instead of some new variable named SD.pos
-# function lapply is better for .SD in data.table
+# Function lapply is better for .SD in data.table
 DT.expr1.normalized.constant <- DT.expr1[, (SD.pos) := lapply(.SD, NormalizeconstantAsCol), .SDcols = SD.pos]
 ```
 
@@ -205,3 +206,67 @@ Summary plot:
 ![summary.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/summary.png)
 
 According to this summary, the expression matrix processed by quantile normalization, i.e. `DT.expr1.normalized.quantile` was chosen as the input for the downstream analysis.
+
+```R
+# Backup normalized matrix
+save(DT.expr1.normalized.quantile, file = 'expr.normalized.RData', compress = 'xz', compression_level = 9)
+```
+
+## Principle components analysis
+
+Let's decomposite the matrix by [SVD (Singular Value Decomposition)](http://genomicsclass.github.io/book/pages/svd.html) method first.
+
+```R
+setwd('~/github.com/bioinformatist/research_projects/project1/')
+library(data.table)
+library(cowplot)
+
+load('expr.normalized.RData')
+expr.T <- t(DT.expr1.normalized.quantile[,2:dim(DT.expr1.normalized.quantile)[2]])
+sv <- svd(expr.T)
+U = sv$u
+V = sv$v
+D = sv$d
+```
+
+First check if we can in fact reconstruct `expr.T`:
+
+```R
+expr.T.hat <- U %*% diag(sv$d) %*% t(V)
+expr.T.resid <- expr.T - expr.T.hat
+max(abs(expr.T.resid))
+```
+
+The largest residual is small enough to be ignored:
+
+```pre
+[1] 2.869029e-10
+```
+
+With scree plot:
+
+```R
+variance.explained <- D^2/sum(D^2)
+variance.explained <- data.table(Index = 1:length(variance.explained), var = variance.explained)
+ggplot(data = variance.explained, aes(x = Index, y = var)) + geom_point(shape = 1, size = 3) + geom_path() + labs(y = 'Percent variability explained')
+save_plot('figures/screeplot.SVD.png', plot = last_plot(), base_height = 8.5, base_width = 11)
+```
+
+The screeplot of data PCAed by SVD:
+![density.normalized.quantile.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/screeplot.SVD.png)
+
+We can see that cumulative variance explained by first two PCs is over ~80% of total variance. Therefore, we don't need observe more PCs.
+
+```R
+# U are un-scaled PCs. Use Z as scaled PC:
+Z = expr.T %*% V
+pc.DT <- data.table(sample = rownames(Z), PC1 = Z[,1], PC2 = Z[,2])
+ggplot(pc.DT, aes(x = PC1, y = PC2, col = sample)) + geom_point() + geom_text(aes(label = sample), hjust=0, vjust=0)
+save_plot('figures/biplot.SVD.png', plot = last_plot(), base_height = 8.5, base_width = 11)
+```
+
+The biplot of data PCAed by SVD:
+![density.normalized.quantile.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/biplot.SVD.png)
+
+ :anger:What The Fuck?:anger: Considering I'm not familiar with SVD, maybe there's some mistakes. Again, I'll do it with R's `stats::prcomp` function.
+ 
