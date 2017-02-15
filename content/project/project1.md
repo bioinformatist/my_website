@@ -16,6 +16,9 @@ image = ""
   - [Extract expression matrix from raw data](#extract-expression-matrix-from-raw-data)
   - [Normalize expression matrix](#normalize-expression-matrix)
   - [Principle components analysis](#principle-components-analysis)
+    - [By SVD (a "false" demo :joy:)](#by-svd-a-false-demo-joy)
+    - [By base R function `stats::prcomp`](#by-base-r-function-statsprcomp)
+    - [By SVD (Centered data)](#by-svd-centered-data)
 
 <!-- TOC END -->
 
@@ -214,6 +217,8 @@ save(DT.expr1.normalized.quantile, file = 'expr.normalized.RData', compress = 'x
 
 ## Principle components analysis
 
+### By SVD (a "false" demo :joy:)
+
 Let's decomposite the matrix by [SVD (Singular Value Decomposition)](http://genomicsclass.github.io/book/pages/svd.html) method first.
 
 ```R
@@ -222,7 +227,8 @@ library(data.table)
 library(cowplot)
 
 load('expr.normalized.RData')
-expr.T <- t(DT.expr1.normalized.quantile[,2:dim(DT.expr1.normalized.quantile)[2]])
+expr.T <- as.data.frame(t(DT.expr1.normalized.quantile[,-1]))
+colnames(expr.T) <- DT.expr1.normalized.quantile$miRNAs
 sv <- svd(expr.T)
 U = sv$u
 V = sv$v
@@ -248,25 +254,78 @@ With scree plot:
 ```R
 variance.explained <- D^2/sum(D^2)
 variance.explained <- data.table(Index = 1:length(variance.explained), var = variance.explained)
-ggplot(data = variance.explained, aes(x = Index, y = var)) + geom_point(shape = 1, size = 3) + geom_path() + labs(y = 'Percent variability explained')
+ggdraw(ggplot(data = variance.explained, aes(x = Index, y = var)) + geom_point(shape = 1, size = 3) + geom_path() + labs(y = 'Percent variability explained')) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
 save_plot('figures/screeplot.SVD.png', plot = last_plot(), base_height = 8.5, base_width = 11)
 ```
 
 The screeplot of data PCAed by SVD:
-![density.normalized.quantile.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/screeplot.SVD.png)
+![screeplot.SVD.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/screeplot.SVD.png)
 
-We can see that cumulative variance explained by first two PCs is over ~80% of total variance. Therefore, we don't need observe more PCs.
+We can see that cumulative variance explained by first two PCs is over ~80% of total variance. Therefore, we don't need observe more than the first two PCs.
 
 ```R
 # U are un-scaled PCs. Use Z as scaled PC:
-Z = expr.T %*% V
+Z = as.matrix(expr.T) %*% V
 pc.DT <- data.table(sample = rownames(Z), PC1 = Z[,1], PC2 = Z[,2])
-ggplot(pc.DT, aes(x = PC1, y = PC2, col = sample)) + geom_point() + geom_text(aes(label = sample), hjust=0, vjust=0)
+ggdraw(ggplot(pc.DT, aes(x = PC1, y = PC2, col = sample)) + geom_point() + geom_text(aes(label = sample), hjust=0, vjust=0)) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
 save_plot('figures/biplot.SVD.png', plot = last_plot(), base_height = 8.5, base_width = 11)
 ```
 
 The biplot of data PCAed by SVD:
-![density.normalized.quantile.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/biplot.SVD.png)
+![biplot.SVD.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/biplot.SVD.png)
 
- :anger:What The Fuck?:anger: Considering I'm not familiar with SVD, maybe there's some mistakes. Again, I'll do it with R's `stats::prcomp` function.
- 
+ :anger:What The Fuck? :anger: Considering I'm not familiar with SVD, maybe there's some mistakes. Again, I'll do it with R's `stats::prcomp` function.
+
+### By base R function `stats::prcomp`
+
+```R
+# Run unless ggbiplot has been installed
+# library(devtools)
+# install_github("ggbiplot", "vqv")
+library(ggbiplot)
+source('~/github.com/bioinformatist/research_projects/project1/scripts/plot.PCA.R')
+expr.T <- as.data.frame(t(DT.expr1.normalized.quantile[,-1]))
+colnames(expr.T) <- DT.expr1.normalized.quantile$miRNAs
+# Center, but not scale
+expr.pca <- prcomp(expr.T, scale. = FALSE)
+# Make various forms of scree plot
+# source('~/github.com/bioinformatist/research_projects/project1/scripts/plot.PCA.R')
+# pcaCharts(expr.pca)
+# Define group, H stand for healthy group, OP for osteoporosis group and OPC for osteoporosis with cataclasis group
+expr.class <- c(rep('H', 6), rep('OP', 6), rep('OPC', 6))
+ggdraw(ggbiplot(expr.pca, groups = expr.class, ellipse = TRUE, circle = TRUE, labels = row.names(expr.T), var.axes = FALSE)) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
+save_plot('figures/biplot.prcomp.png', plot = last_plot(), base_height = 8.5, base_width = 11)
+```
+
+The biplot of data PCAed by `stats::prcomp`:
+![biplot.prcomp.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/biplot.prcomp.png)
+
+From the R documents of `stats::prcomp`, the function use **SVD** as well:
+
+> The calculation is done by a singular value decomposition of the (centered and possibly scaled) data matrix, not by using eigen on the covariance matrix.
+
+(Silence... :speech_balloon:)
+
+After careful comparison, the only difference is that I use centered matrix when performing PCA with`stats::prcomp`.
+
+### By SVD (Centered data)
+
+```R
+expr.centered <- t(scale(t(DT.expr1.normalized.quantile[,-1]),center=TRUE,scale=FALSE))
+expr.T <- t(expr.centered)
+
+sv <- svd(expr.T)
+U = sv$u
+V = sv$v
+D = sv$d
+
+Z = as.matrix(expr.T) %*% V
+pc.DT <- data.table(sample = rownames(Z), PC1 = Z[,1], PC2 = Z[,2])
+ggdraw(ggplot(pc.DT, aes(x = PC1, y = PC2, col = sample)) + geom_point() + geom_text(aes(label = sample), hjust=0, vjust=0)) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
+save_plot('figures/biplot.SVD.ver2.png', plot = last_plot(), base_height = 8.5, base_width = 11)
+```
+
+The biplot of data PCAed by SVD (with centered data):
+![biplot.SVD.ver2.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/biplot.SVD.ver2.png)
+
+Quite similar with one by `stats::prcomp`, isn't it? :trollface:
