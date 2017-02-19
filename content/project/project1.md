@@ -16,9 +16,10 @@ image = ""
   - [Extract expression matrix from raw data](#extract-expression-matrix-from-raw-data)
   - [Normalize expression matrix](#normalize-expression-matrix)
   - [Principle components analysis](#principle-components-analysis)
-    - [By SVD (a "false" demo :joy:)](#by-svd-a-false-demo-joy)
+    - [By SVD (a "false" demo)](#by-svd-a-false-demo)
     - [By base R function `stats::prcomp`](#by-base-r-function-statsprcomp)
     - [By SVD (Centered data)](#by-svd-centered-data)
+  - [Get DE (differentially expressed) miRNAs](#get-de-differentially-expressed-mirnas)
 
 <!-- TOC END -->
 
@@ -217,7 +218,7 @@ save(DT.expr1.normalized.quantile, file = 'expr.normalized.RData', compress = 'x
 
 ## Principle components analysis
 
-### By SVD (a "false" demo :joy:)
+### By SVD (a "false" demo)
 
 Let's decomposite the matrix by [SVD (Singular Value Decomposition)](http://genomicsclass.github.io/book/pages/svd.html) method first.
 
@@ -329,3 +330,54 @@ The biplot of data PCAed by SVD (with centered data):
 ![biplot.SVD.ver2.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/biplot.SVD.ver2.png)
 
 Quite similar with one by `stats::prcomp`, isn't it? :trollface:
+
+## Get DE (differentially expressed) miRNAs
+
+Log2 scale the data:
+
+```R
+library(genefilter)
+source('~/github.com/bioinformatist/research_projects/project1/scripts/log2.scale.R')
+expr.log2 <- log2.scale(DT.expr1.normalized.quantile[,-1])
+```
+
+According to the `limma`'s user guide:
+
+> Note that filtering methods involving variances should not be used. The limma algorithm analyses the spread of the genewise variances. Any filtering method based on genewise variances will change the distribution of variances, will interfere with the limma algorithm and hence will give poor results.
+
+And:
+
+> There are a number of ways that filtering can be done. One way is to keep probes that are expressed above background on at least n arrays, where n is the smallest number of replicates assigned to any of the treatment combinations.
+
+There's a package named `genefilter` can do it. I chose `six` as the smallest number of replicates, and to set a proper threshold:
+
+```R
+ggdraw(ggplot(data = data.table(intensity = as.vector(t(expr.log2))), aes(x = intensity)) + geom_density()) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
+save_plot('figures/density.log2.all.png', plot = last_plot(), base_height = 8.5, base_width = 11)
+```
+
+The density plot through all samples in log2-scaled matrix:
+![density.log2.all.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/density.log2.all.png)
+
+Zoom in and add more ticks with labels to see the details:
+
+```R
+ggdraw(ggplot(data = data.table(intensity = as.vector(t(expr.log2))), aes(x = intensity)) + geom_density() + geom_vline(xintercept = 3.5, color = 'red', size = 3)+ scale_x_continuous(limits = c(2, 8), breaks = c(seq(2, 5, 0.5), 8), labels = c(seq(2, 5, 0.5), 8))) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
+save_plot('figures/density.log2.local.png', plot = last_plot(), base_height = 8.5, base_width = 11)
+```
+
+The density plot zoomed in:
+![density.log2.local.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/density.log2.local.png)
+
+That's why I determined to use `3.5` as threshold of function `genefilter::kOverA`.
+
+```R
+# Perform filtering
+f1 <- kOverA(6, 3.5)
+flist <- filterfun(f1)
+expr.flr <- genefilter(expr.log2, flist)
+# Show the remaining number of features (miRNAs)
+# sum(expr.flr)
+```
+
+Actually, none of features has been removed...
