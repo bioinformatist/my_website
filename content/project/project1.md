@@ -397,6 +397,7 @@ save(expr.log2, file = 'expr.flr.RData', compress = 'xz', compression_level = 9)
 setwd('~/github.com/bioinformatist/research_projects/project1/')
 library(data.table)
 library(cowplot)
+library(limma)
 
 load('expr.flr.RData')
 load('expr.normalized.RData')
@@ -407,5 +408,12 @@ fit <- lmFit(expr.log2, design)
 contrast.matrix <- makeContrasts(OP-H, OPC-OP, OPC-H, levels=design)
 fit2 <- contrasts.fit(fit, contrast.matrix)
 fit2 <- eBayes(fit2)
-head(topTable(fit2, coef=1, adjust="BH", genelist = DT.expr1.normalized.quantile[,1], number = nrow(fit2), sort.by = 'M', lfc = log2(1.5)))
+
+DE.OP.H <- topTable(fit2, coef = 1, genelist = DT.expr1.normalized.quantile[,1], number = nrow(fit2), sort.by = 'p', resort.by = 'M', lfc = log2(2), p.value = 0.01)
+DE.OPC.OP <- topTable(fit2, coef = 2, genelist = DT.expr1.normalized.quantile[,1], number = nrow(fit2), sort.by = 'p', resort.by = 'M', lfc = log2(2), p.value = 0.01)
+DE.OPC.H <- topTable(fit2, coef = 3, genelist = DT.expr1.normalized.quantile[,1], number = nrow(fit2), sort.by = 'p', resort.by = 'M', lfc = log2(2), p.value = 0.01)
+
+fwrite(DE.OP.H, file = 'OP vs H.csv')
+fwrite(DE.OPC.OP, file = 'OPC vs OP.csv')
+fwrite(DE.OPC.H, file = 'OPC vs H.csv')
 ```
