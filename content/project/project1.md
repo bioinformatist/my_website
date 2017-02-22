@@ -19,6 +19,7 @@ image = ""
     - [By SVD (a "false" demo)](#by-svd-a-false-demo)
     - [By base R function `stats::prcomp`](#by-base-r-function-statsprcomp)
     - [By SVD (Centered data)](#by-svd-centered-data)
+  - [miRNAs filtering](#mirnas-filtering)
   - [Get DE (differentially expressed) miRNAs](#get-de-differentially-expressed-mirnas)
 
 <!-- TOC END -->
@@ -284,7 +285,6 @@ The biplot of data PCAed by SVD:
 # library(devtools)
 # install_github("ggbiplot", "vqv")
 library(ggbiplot)
-source('~/github.com/bioinformatist/research_projects/project1/scripts/plot.PCA.R')
 expr.T <- as.data.frame(t(DT.expr1.normalized.quantile[,-1]))
 colnames(expr.T) <- DT.expr1.normalized.quantile$miRNAs
 # Center, but not scale
@@ -331,7 +331,7 @@ The biplot of data PCAed by SVD (with centered data):
 
 Quite similar with one by `stats::prcomp`, isn't it? :trollface:
 
-## Get DE (differentially expressed) miRNAs
+## miRNAs filtering
 
 Log2 scale the data:
 
@@ -349,7 +349,7 @@ And:
 
 > There are a number of ways that filtering can be done. One way is to keep probes that are expressed above background on at least n arrays, where n is the smallest number of replicates assigned to any of the treatment combinations.
 
-There's a package named `genefilter` can do it. I chose `six` as the smallest number of replicates, and to set a proper threshold:
+There's a package named `genefilter` can do it. I chose **six** as the smallest number of replicates, and to set a proper threshold:
 
 ```R
 ggdraw(ggplot(data = data.table(intensity = as.vector(t(expr.log2))), aes(x = intensity)) + geom_density()) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
@@ -369,7 +369,7 @@ save_plot('figures/density.log2.local.png', plot = last_plot(), base_height = 8.
 The density plot zoomed in:
 ![density.log2.local.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/density.log2.local.png)
 
-That's why I determined to use `3.5` as threshold of function `genefilter::kOverA`.
+That's why I determined to use **3.5** as threshold of function `genefilter::kOverA`.
 
 ```R
 # Perform filtering
@@ -377,7 +377,35 @@ f1 <- kOverA(6, 3.5)
 flist <- filterfun(f1)
 expr.flr <- genefilter(expr.log2, flist)
 # Show the remaining number of features (miRNAs)
-# sum(expr.flr)
+sum(expr.flr)
+```
+
+```pre
+[1] 2077
 ```
 
 Actually, none of features has been removed...
+
+```R
+# Backup log2-scaled and filtered (no effect indeed)
+save(expr.log2, file = 'expr.flr.RData', compress = 'xz', compression_level = 9)
+```
+
+## Get DE (differentially expressed) miRNAs
+
+```R
+setwd('~/github.com/bioinformatist/research_projects/project1/')
+library(data.table)
+library(cowplot)
+
+load('expr.flr.RData')
+load('expr.normalized.RData')
+
+design <- model.matrix(~ 0+factor(c(rep(1, 6), rep(2, 6), rep(3, 6))))
+colnames(design) <- c("H", "OP", "OPC")
+fit <- lmFit(expr.log2, design)
+contrast.matrix <- makeContrasts(OP-H, OPC-OP, OPC-H, levels=design)
+fit2 <- contrasts.fit(fit, contrast.matrix)
+fit2 <- eBayes(fit2)
+head(topTable(fit2, coef=1, adjust="BH", genelist = DT.expr1.normalized.quantile[,1], number = nrow(fit2), sort.by = 'M', lfc = log2(1.5)))
+```
