@@ -21,6 +21,9 @@ image = ""
     - [By SVD (Centered data)](#by-svd-centered-data)
   - [miRNAs filtering](#mirnas-filtering)
   - [Get DE (differentially expressed) miRNAs](#get-de-differentially-expressed-mirnas)
+  - [Retrieve all validated target genes of given miRNAs](#retrieve-all-validated-target-genes-of-given-mirnas)
+  - [GO and KEGG enrichment analysis](#go-and-kegg-enrichment-analysis)
+  - [SpidermiR](#spidermir)
 
 <!-- TOC END -->
 
@@ -416,4 +419,99 @@ DE.OPC.H <- topTable(fit2, coef = 3, genelist = DT.expr1.normalized.quantile[,1]
 fwrite(DE.OP.H, file = 'OP vs H.csv')
 fwrite(DE.OPC.OP, file = 'OPC vs OP.csv')
 fwrite(DE.OPC.H, file = 'OPC vs H.csv')
+```
+
+## Retrieve all validated target genes of given miRNAs
+
+```R
+# Install package multiMiR with dependence
+# install.packages("XML")
+# install.packages("RCurl")
+# install.packages('http://multimir.ucdenver.edu/multiMiR_2.1.1.tar.gz', repos = NULL, type = 'source')
+
+setwd('~/github.com/bioinformatist/research_projects/project1/')
+library(multiMiR)
+library(data.table)
+library(cowplot)
+
+DE.OP.H <- fread('OP vs H.csv')
+DE.OPC.OP <- fread('OPC vs OP.csv')
+DE.OPC.H <- fread('OPC vs H.csv')
+
+OP.H.target.up <- get.multimir(mirna = DE.OP.H[logFC > 0, miRNAs], summary = TRUE)
+OP.H.target.down <- get.multimir(mirna = DE.OP.H[logFC < 0, miRNAs], summary = TRUE)
+OPC.OP.target.up <- get.multimir(mirna = DE.OPC.OP[logFC > 0, miRNAs], summary = TRUE)
+OPC.OP.target.down <- get.multimir(mirna = DE.OPC.OP[logFC < 0, miRNAs], summary = TRUE)
+OPC.H.target.up <- get.multimir(mirna = DE.OPC.H[logFC > 0, miRNAs], summary = TRUE)
+OPC.H.target.down <- get.multimir(mirna = DE.OPC.H[logFC < 0, miRNAs], summary = TRUE)
+
+save.image(file = "DE.miRNAs.target.genes.RData")
+
+```
+
+## GO and KEGG enrichment analysis
+
+DEGs between OP and H groups were used in this step.
+
+```R
+setwd('~/github.com/bioinformatist/research_projects/project1/')
+load('DE.miRNAs.target.genes.RData')
+# Install R devtools
+# sudo dnf install openssl-devel
+# sudo dnf install libcurl-devel.x86_64
+# install.packages('devtools')
+# library(devtools)
+# install.packages('png')
+# devtools::install_github("shenwei356/swr")
+# Install package clusterProfiler
+# source("https://bioconductor.org/biocLite.R")
+# biocLite("clusterProfiler")
+# library(swr)
+# library(clusterProfiler)
+# library(cowplot)
+# library(stringr)
+
+source('~/github.com/bioinformatist/research_projects/project1/scripts/annotating.R')
+Entrez2GroupedGOResults(as.character(OP.H.target.down$summary[,4]), 'OP vs H', watermark.content = "Draft for \n Peng's Lab!")
+```
+
+As you can see, to avoid repeating some statement for many times, I use a [R script](https://github.com/bioinformatist/research_projects/blob/master/project1/scripts/annotating.R) for annotating, getting result tables and drawing figures (even adding watermark).
+
+The GO classification barplot:
+![barplot.ggo.OP vs H.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/barplot.ggo.OP vs H.png)
+
+There's also tables for results of three ontologies ([BP](https://github.com/bioinformatist/research_projects/blob/master/project1/ggo.OP vs H.BP.csv), [CC](https://github.com/bioinformatist/research_projects/blob/master/project1/ggo.OP vs H.CC.csv) and [MF](https://github.com/bioinformatist/research_projects/blob/master/project1/ggo.OP vs H.MF.csv)).
+
+## SpidermiR
+```R
+setwd('~/github.com/bioinformatist/research_projects/project1/')
+library(SpidermiR)
+# Check species supported by GeneMania
+org <- SpidermiRquery_species(species)
+```
+
+Supported species:
+
+```pre
+tabOrgd
+1     Arabidopsis_thaliana
+2   Caenorhabditis_elegans
+3              Danio_rerio
+4  Drosophila_melanogaster
+5         Escherichia_coli
+6             Homo_sapiens
+7             Mus_musculus
+8        Rattus_norvegicus
+9 Saccharomyces_cerevisiae
+```
+
+```R
+net_type <- SpidermiRquery_networks_type(organismID=org[6,])
+```
+
+Supported network types for *Homo Sapiens*:
+
+```pre
+[1] "Genetic interactions"   "Co-expression"          "Pathway"                "Predicted"             
+[5] "Co-localization"        "Shared protein domains" "Physical interactions"
 ```
