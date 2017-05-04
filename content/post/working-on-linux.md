@@ -13,7 +13,7 @@ summary = "Guide for say Goodbye to Windows"
 1. Preparation of a USB media.
  1. Download the proper [*Manjaro KDE Edition*](https://manjaro.org/get-manjaro/) disc image (ISO file).
  2. Check your device list using `sudo fdisk -l`.
- 3. Run command as `sudo dd if=~/Downloads/manjaro-kde-17.0.1-stable-x86_64.iso of=/dev/sdc` (You may replace the ISO file name and target device name by yourself). This will take even over 10 minutes. For Windows user, try software like *Fedora media writer*, *rawrite* and *UltraISO".
+ 3. Run command as `sudo dd if=~/Downloads/manjaro-kde-17.0.1-stable-x86_64.iso of=/dev/sdc` (You may replace the ISO file name and target device name by yourself). This will take even over 10 minutes. For Windows user, try software like *Fedora media writer*, *rawrite* and *UltraISO*.
 2. Restart your PC and press `F12` to choose boot from *USB flash driver*.
 3. Start Installation. **TODO: /home, MBR and GPT**
 
@@ -49,6 +49,13 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 sudo pacman -Syyu
 sudo pacman -S archlinuxcn-keyring
 ```
+
+## gcc-fortran
+sudo pacman -S gcc-fortran
+
+## Tk
+
+`sudo pacman -S tk`
 
 ## Atom
 `sudo pacman -S atom`

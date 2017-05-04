@@ -30,7 +30,6 @@ image = ""
 I've checked the reports and raw data, and there're only probes for *Hy3*, with no *Hy5* labled. Hence, it must be a single channel microarray.
 
 ## Count numbers for each type of miRNAs/probes
-
 ```perl
 perl -F, -lane'!($.>= 12 and $F[3] =~ /miR|let/) and next; $count{(split/[-_]/, $F[3])[1]}++ }{ print qq{$_ | $count{$_}} for sort {$count{$b} <=> $count{$a}} keys %count' 'Raw Intensity File.csv'
 ```
@@ -44,7 +43,6 @@ miRPlus | 72
 let | 72
 
 ## Extract expression matrix from raw data
-
 Perl-oneliner I used below removed headers (comment lines at the start of the file) and abundant columns.
 
 {{% alert note %}}
@@ -88,7 +86,6 @@ As microRNA probes bind more miRNAs than what you are interested in, for each mi
 {{% /alert %}}
 
 ## Normalize expression matrix
-
 To illustrate raw data distribution, a density plot and a boxplot were generated.
 
 ```R
@@ -221,9 +218,7 @@ save(DT.expr1.normalized.quantile, file = 'expr.normalized.RData', compress = 'x
 ```
 
 ## Principle components analysis
-
 ### By SVD (a "false" demo)
-
 Let's decomposite the matrix by [SVD (Singular Value Decomposition)](http://genomicsclass.github.io/book/pages/svd.html) method first.
 
 ```R
@@ -282,7 +277,6 @@ The biplot of data PCAed by SVD:
  :anger:What The Fuck? :anger: Considering I'm not familiar with SVD, maybe there's some mistakes. Again, I'll do it with R's `stats::prcomp` function.
 
 ### By base R function `stats::prcomp`
-
 ```R
 # Run unless ggbiplot has been installed
 # library(devtools)
@@ -313,7 +307,6 @@ From the R documents of `stats::prcomp`, the function use **SVD** as well:
 After careful comparison, the only difference is that I use centered matrix when performing PCA with`stats::prcomp`.
 
 ### By SVD (Centered data)
-
 ```R
 expr.centered <- t(scale(t(DT.expr1.normalized.quantile[,-1]),center=TRUE,scale=FALSE))
 expr.T <- t(expr.centered)
@@ -335,7 +328,6 @@ The biplot of data PCAed by SVD (with centered data):
 Quite similar with one by `stats::prcomp`, isn't it? :trollface:
 
 ## miRNAs filtering
-
 Log2 scale the data:
 
 ```R
@@ -395,7 +387,6 @@ save(expr.log2, file = 'expr.flr.RData', compress = 'xz', compression_level = 9)
 ```
 
 ## Get DE (differentially expressed) miRNAs
-
 ```R
 setwd('~/github.com/bioinformatist/research_projects/project1/')
 library(data.table)
@@ -421,8 +412,19 @@ fwrite(DE.OPC.OP, file = 'OPC vs OP.csv')
 fwrite(DE.OPC.H, file = 'OPC vs H.csv')
 ```
 
-## Retrieve all validated target genes of given miRNAs
+To draw a volcano plot:
 
+```R
+volcano.OP.H <- topTable(fit2, coef = 1, genelist = DT.expr1.normalized.quantile[,1], number = nrow(fit2), sort.by = 'p', resort.by = 'M')
+volcano.OP.H$threshold = as.factor(abs(volcano.OP.H$logFC) > 2 & volcano.OP.H$P.Value < 0.05 / nrow(fit2))
+ggdraw(ggplot(data = volcano.OP.H, aes(x = logFC, y = -log10(P.Value), colour = threshold)) + geom_point(alpha=0.4, size=1.75) + theme(legend.position = "none") + xlim(c(-10, 10)) + ylim(c(0, 15)) + xlab(expression("log"[2]*"(Fold Change)")) + ylab(expression("-log"[10]*"(p-value)"))) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
+save_plot('figures/volcano.OP vs H.png', plot = last_plot(), base_height = 8.5, base_width = 11)
+```
+
+The volcano plot of *OP vs H*:
+![volcano.OP vs H.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/volcano.OP vs H.png)
+
+## Retrieve all validated target genes of given miRNAs
 ```R
 # Install package multiMiR with dependence
 # install.packages("XML")
@@ -450,7 +452,6 @@ save.image(file = "DE.miRNAs.target.genes.RData")
 ```
 
 ## GO and KEGG enrichment analysis
-
 DEGs between OP and H groups were used in this step.
 
 ```R
@@ -472,15 +473,23 @@ load('DE.miRNAs.target.genes.RData')
 # library(stringr)
 
 source('~/github.com/bioinformatist/research_projects/project1/scripts/annotating.R')
-Entrez2GroupedGOResults(as.character(OP.H.target.down$summary[,4]), 'OP vs H', watermark.content = "Draft for \n Peng's Lab!")
+Entrez2GOResults(as.character(OP.H.target.down$summary[,4]), 'OP vs H', watermark.content = "Draft for \n Peng's Lab!")
 ```
 
-As you can see, to avoid repeating some statement for many times, I use a [R script](https://github.com/bioinformatist/research_projects/blob/master/project1/scripts/annotating.R) for annotating, getting result tables and drawing figures (even adding watermark).
+As you can see, to avoid repeating some statement for many times, I use a [R script](https://github.com/bioinformatist/research_projects/blob/master/project1/scripts/annotating.R) for annotating and enrichment, getting result tables and drawing figures (even adding watermark).
 
 The GO classification barplot:
 ![barplot.ggo.OP vs H.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/barplot.ggo.OP vs H.png)
 
-There's also tables for results of three ontologies ([BP](https://github.com/bioinformatist/research_projects/blob/master/project1/ggo.OP vs H.BP.csv), [CC](https://github.com/bioinformatist/research_projects/blob/master/project1/ggo.OP vs H.CC.csv) and [MF](https://github.com/bioinformatist/research_projects/blob/master/project1/ggo.OP vs H.MF.csv)).
+The GO enrichment dotplot:
+![barplot.ego.OP vs H.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/barplot.ego.OP vs H.png)
+
+**Results in tables:**
+
+GO classification: [BP](https://github.com/bioinformatist/research_projects/blob/master/project1/ggo.OP vs H.BP.csv), [CC](https://github.com/bioinformatist/research_projects/blob/master/project1/ggo.OP vs H.CC.csv) and [MF](https://github.com/bioinformatist/research_projects/blob/master/project1/ggo.OP vs H.MF.csv);
+
+GO enrichment: [BP](https://github.com/bioinformatist/research_projects/blob/master/project1/ego.OP vs H.BP.csv), [CC](https://github.com/bioinformatist/research_projects/blob/master/project1/ego.OP vs H.CC.csv) and [MF](https://github.com/bioinformatist/research_projects/blob/master/project1/ego.OP vs H.MF.csv).
+
 
 ## SpidermiR
 ```R
