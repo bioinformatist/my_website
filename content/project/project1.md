@@ -21,6 +21,7 @@ image = ""
     - [By SVD (Centered data)](#by-svd-centered-data)
   - [miRNAs filtering](#mirnas-filtering)
   - [Get DE (differentially expressed) miRNAs](#get-de-differentially-expressed-mirnas)
+  - [Heatmap with dendrogram](#heatmap-with-dendrogram)
   - [Retrieve all validated target genes of given miRNAs](#retrieve-all-validated-target-genes-of-given-mirnas)
   - [GO and KEGG enrichment analysis](#go-and-kegg-enrichment-analysis)
   - [SpidermiR](#spidermir)
@@ -423,6 +424,24 @@ save_plot('figures/volcano.OP vs H.png', plot = last_plot(), base_height = 8.5, 
 
 The volcano plot of *OP vs H*:
 ![volcano.OP vs H.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/volcano.OP vs H.png)
+
+## Heatmap with dendrogram
+
+```R
+# install.packages('ggdendro')
+setwd('~/github.com/bioinformatist/research_projects/project1/')
+load('expr.normalized.RData')
+load('DE.miRNAs.target.genes.RData')
+source('~/github.com/bioinformatist/research_projects/project1/scripts/ggheatmap.R')
+library(data.table)
+DEGs.OP.H <- DT.expr1.normalized.quantile[DE.OP.H, on = "miRNAs"][,1:dim(DT.expr1.normalized.quantile)[2]]
+heatmap.dendrogram <- ggheatmap(DEGs.OP.H)
+ggdraw() + draw_plot(heatmap.dendrogram[[1]], 0.0, 0.0, .8, .8) + draw_plot(heatmap.dendrogram[[2]], 0.235, .8, .494, .1) + draw_plot(heatmap.dendrogram[[3]], .8, -.031, .2, .8673)
+save_plot('figures/heatmap.dd.OP vs H.png', plot = last_plot(), base_height = 30, base_width = 10)
+```
+
+The heatmap with dendrogram of *OP vs H*:
+![heatmap.dd.OP vs H.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/heatmap.dd.OP vs H.png)
 
 ## Retrieve all validated target genes of given miRNAs
 ```R
