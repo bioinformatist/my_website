@@ -436,7 +436,7 @@ source('~/github.com/bioinformatist/research_projects/project1/scripts/ggheatmap
 library(data.table)
 DEGs.OP.H <- DT.expr1.normalized.quantile[DE.OP.H, on = "miRNAs"][,1:dim(DT.expr1.normalized.quantile)[2]]
 heatmap.dendrogram <- ggheatmap(DEGs.OP.H)
-ggdraw() + draw_plot(heatmap.dendrogram[[1]], 0.0, 0.0, .8, .8) + draw_plot(heatmap.dendrogram[[2]], 0.235, .8, .494, .1) + draw_plot(heatmap.dendrogram[[3]], .8, -.031, .2, .8673)
+ggdraw() + draw_plot(heatmap.dendrogram[[1]], 0.0, 0.0, .8, .8) + draw_plot(heatmap.dendrogram[[2]], 0.21, .8, .52, .1) + draw_plot(heatmap.dendrogram[[3]], .8, -.031, .2, .8673) + draw_label("Draft for \n Peng's Lab!", angle = 45, size = 80, alpha = .2)
 save_plot('figures/heatmap.dd.OP vs H.png', plot = last_plot(), base_height = 30, base_width = 10)
 ```
 
@@ -503,12 +503,22 @@ The GO classification barplot:
 The GO enrichment dotplot:
 ![barplot.ego.OP vs H.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/barplot.ego.OP vs H.png)
 
+**KEGG over-representation test:**
+
+```R
+library(data.table)
+kk.OP.H <- enrichKEGG(as.character(OP.H.target.down$summary[,4]))
+mkk.OP.H <- enrichMKEGG(as.character(OP.H.target.down$summary[,4]))  # No matches
+fwrite(kk.OP.H@result, file = "KEGG.OP vs H.csv")
+```
+
 **Results in tables:**
 
 GO classification: [BP](https://github.com/bioinformatist/research_projects/blob/master/project1/ggo.OP vs H.BP.csv), [CC](https://github.com/bioinformatist/research_projects/blob/master/project1/ggo.OP vs H.CC.csv) and [MF](https://github.com/bioinformatist/research_projects/blob/master/project1/ggo.OP vs H.MF.csv);
 
 GO enrichment: [BP](https://github.com/bioinformatist/research_projects/blob/master/project1/ego.OP vs H.BP.csv), [CC](https://github.com/bioinformatist/research_projects/blob/master/project1/ego.OP vs H.CC.csv) and [MF](https://github.com/bioinformatist/research_projects/blob/master/project1/ego.OP vs H.MF.csv).
 
+Also [KEGG enrichment results](https://github.com/bioinformatist/research_projects/blob/master/project1/KEGG.OP vs H.csv).
 
 ## SpidermiR
 ```R
