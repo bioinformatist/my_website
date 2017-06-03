@@ -28,9 +28,7 @@ The PyQt5 wheels do not provide tools such as Qt Designer that were included in 
 Qt's *stacked widget* object has been used for pack all tools in a single main widget in this project. I just add menu, stacked widget with items such as *text edit box*, *radio button* and so on within it through *QtDesigner*, and finally, run the command like `pyuic5 -o mainwindow.py gui.UI` to transform UI file (in *XML* format) into Python code. You can also use other similar tools.
 
 {{% alert note %}}
-It is highly recommended to **NOT** add *signal/slot* in *QtDesigner*:
-- `pyuic5` has parameter `-p` allows you to preview the UI without code.
-- You may lose flexibility when you're losing in OOP.
+It is highly recommended to **NOT** add *signal/slot* in *QtDesigner*, for `pyuic5` has parameter `-p` allows you to preview the UI without code,and you may lose flexibility when you're losing in OOP.
 {{% /alert %}}
 
 ## Tool 1: A wrapped sequence aligner depended on *NCBI MagicBlast*
