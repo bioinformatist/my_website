@@ -34,8 +34,11 @@ view = 1
   tag = ".miRNA"
 
 [[filter]]
-  name = "microarray"
+  name = "Microarray"
   tag = ".microarray"
 
-+++
+[[filter]]
+  name = "Software"
+  tag = ".software"
 
++++

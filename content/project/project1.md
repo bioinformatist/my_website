@@ -1,7 +1,7 @@
 +++
 highlight = true
 external_link = ""
-image_preview = ""
+image_preview = "project_img_preview/heatmap.dd.OP vs H.png"
 summary = "Xiaoya Zhou's miRNA mircroarray data analysis."
 tags = ['miRNA', 'microarray']
 math = false
@@ -27,6 +27,8 @@ image = ""
   - [SpidermiR](#spidermir)
 
 <!-- TOC END -->
+
+All contents of this project post can be found in my [GitHub repo](https://github.com/bioinformatist/research_projects/tree/master/project1).
 
 I've checked the reports and raw data, and there're only probes for *Hy3*, with no *Hy5* labled. Hence, it must be a single channel microarray.
 
@@ -426,6 +428,8 @@ The volcano plot of *OP vs H*:
 ![volcano.OP vs H.png](https://github.com/bioinformatist/research_projects/raw/master/project1/figures/volcano.OP vs H.png)
 
 ## Heatmap with dendrogram
+
+To make a heatmap with dendrogram as a `ggplot` object, I use `cowplot` and `ggdendro` in a [R script](https://github.com/bioinformatist/research_projects/blob/master/project1/scripts/ggheatmap.R).
 
 ```R
 # install.packages('ggdendro')
