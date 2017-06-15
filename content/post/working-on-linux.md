@@ -37,6 +37,8 @@ sudo pacman-optimize && sync
 sudo pacman -Syyu
 ```
 
+For some Chinese users, generating mirror list may raise an error, you can use `sudo pacman-mirrors -g -c china` instead.
+
 `sudo nano /etc/pacman.conf`
 
 ```pre
@@ -51,7 +53,11 @@ sudo pacman -S archlinuxcn-keyring
 ```
 
 ## gcc-fortran
-sudo pacman -S gcc-fortran
+`sudo pacman -S gcc-fortran`
+
+## locate
+``sudo pacman -S mlocate``
+``sudo updatedb``
 
 ## Tk
 
@@ -70,6 +76,9 @@ sudo pacman -S gcc-fortran
 `sudo pacman -S r`
 `sudo yaourt -S rstudio-desktop-bin`
 
+## Axel
+`sudo pacman -S axel`
+
 ## Steam
 Steam outputs this error and exits.
 ```pre
@@ -80,6 +89,9 @@ For steam to work, disable dri3 in xorg config file or as a workaround run steam
 
 ## QQ
 `yaourt crossover`
+
+## Virtualbox
+See [*manjaro wiki*](https://wiki.manjaro.org/index.php?title=Virtualbox) here.
 
 [^1]: Need 190MB at least for *Fedora*, may even less for *Arch Linux*.
 [^2]: **TODO**
