@@ -50,10 +50,29 @@ Ignore/Cancel?
 The warning means the partition start is not aligned. Anyway, `0KB` is not real start of your disk.
     {{% /alert %}}
 
-5. Run `mkfs.ext4 -F /dev/sdb1` to reformat partition (`parted`'s ext4` parameter doesn't works, I don't know why yet).
+5. Run `mkfs.ext4 -F /dev/sdb1` to reformat partition (`parted`'s `ext4` parameter doesn't works, I don't know why yet).
 6. `mount /dev/sdb1 /home` to mount new disk as `/home`. To make this mount point auto-mounted, 
 add `/dev/sdb1  /home  ext4  defaults,noatime  0  2` at the last line of `/etc/fstab`, then restart.
-7. If you have /home directory on KDE platform before, 
+7. To configure auto-starting services with `systemd` (use the `sshd.service` as example):
+    1. Use the command like `sudo systemctl enable sshd.service` to enable the service, 
+    and this should create a symlink in `/etc/systemd/system/multi-user.target.wants/` that looks like the following 
+    (do **NOT** create this manually):
+    
+    ```pre
+    lrwxrwxrwx 1 root root 38 Aug  1 04:43 /etc/systemd/system/multi-user.target.wants/service.service -> /usr/lib/systemd/system/service.service
+    ```
+    
+    2. `vim /etc/systemd/system/multi-user.target.wants/sshd.service` to check the content of the service file. 
+    Make sure the file contains a line like `Restart=always` under the `[Service]` section of the file to 
+    enable the service to respawn after a crash.
+    3. Finally, reload the `systemd daemon`, followed by a restart of the service:
+    
+    ```bash
+    sudo systemctl daemon-reload
+    sudo systemctl restart sshd.service
+    ```
+    
+8. If you have /home directory on KDE platform before, 
 you may run `cd; rm -rf .cache .config .kde4 .local` to reset your KDE environment.
 
 ## Autostart
@@ -66,7 +85,6 @@ sudo pacman-mirrors -g
 sudo pacman-optimize && sync
 sudo pacman -Syyu
 ```
-
 For some Chinese users, generating mirror list may raise an error (probably caused by network), 
 you can use `sudo pacman-mirrors -g -c china` instead.
 
@@ -115,8 +133,10 @@ ysun        ALL=(ALL)     NOPASSWD:ALL
 `sudo pacman -S gcc-fortran`
 
 ## locate
-``sudo pacman -S mlocate``
-``sudo updatedb``
+```bash
+sudo pacman -S mlocate
+sudo updatedb
+```
 
 ## Tk
 
