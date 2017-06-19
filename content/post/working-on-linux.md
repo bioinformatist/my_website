@@ -25,9 +25,9 @@ Volume of these partitions should be set as below:
 
     | Directories | Volume     | File system |
     | ----------- | ---------- | ----------- |
-| /boot       | 512M [^1]  | ext4        |
-| swap        | 2048M [^2] | Linux-swap  |
-| /           | remaining space [^3]     | ext4        |
+    | /boot       | 512M [^1]  | ext4        |
+    | swap        | 2048M [^2] | Linux-swap  |
+    | /           | remaining space [^3]     | ext4        |
 
 4. After installation, reboot and try mount `/home`.
     1. Use `sudo fdisk -l` to check all mountable devices.
@@ -58,19 +58,19 @@ add `/dev/sdb1  /home  ext4  defaults,noatime  0  2` at the last line of `/etc/f
     and this should create a symlink in `/etc/systemd/system/multi-user.target.wants/` that looks like the following 
     (do **NOT** create this manually):
     
-    ```pre
-    lrwxrwxrwx 1 root root 38 Aug  1 04:43 /etc/systemd/system/multi-user.target.wants/service.service -> /usr/lib/systemd/system/service.service
-    ```
+        ```pre
+        lrwxrwxrwx 1 root root 38 Aug  1 04:43 /etc/systemd/system/multi-user.target.wants/service.service -> /usr/lib/systemd/system/service.service
+        ```
     
     2. `vim /etc/systemd/system/multi-user.target.wants/sshd.service` to check the content of the service file. 
     Make sure the file contains a line like `Restart=always` under the `[Service]` section of the file to 
     enable the service to respawn after a crash.
     3. Finally, reload the `systemd daemon`, followed by a restart of the service:
     
-    ```bash
-    sudo systemctl daemon-reload
-    sudo systemctl restart sshd.service
-    ```
+        ```bash
+        sudo systemctl daemon-reload
+        sudo systemctl restart sshd.service
+        ```
     
 8. If you have /home directory on KDE platform before, 
 you may run `cd; rm -rf .cache .config .kde4 .local` to reset your KDE environment.
