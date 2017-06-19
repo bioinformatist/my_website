@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dee2805d-7de6-43ab-b713-fe32b1d258d1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/content/post/break-through-GFW.md" afterPath="$PROJECT_DIR$/content/post/break-through-gfw.md" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/content/publication/human-two-novel-lncRNAs.md" afterPath="$PROJECT_DIR$/content/publication/human-two-novel-lncrnas.md" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/content/publication/rRFs.md" afterPath="$PROJECT_DIR$/content/publication/rrfs.md" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/content/publication/sRNA-viruses.md" afterPath="$PROJECT_DIR$/content/publication/srna-viruses.md" />
@@ -164,6 +166,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="publication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="my_website" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="my_website" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="post" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
