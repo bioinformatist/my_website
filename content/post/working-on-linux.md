@@ -17,8 +17,8 @@ summary = "Guide for say Goodbye to Windows"
     (You may replace the ISO file name and target device name by yourself). This will take even over 10 minutes. 
     For Windows user, try software like *Fedora media writer*, *rawrite* and *UltraISO*.
 2. Restart your PC and press `F12` to choose boot from *USB flash driver*.
-3. Start Installation. Choose correct partition table type(`GPT` for UEFI supported motherboard, with manually choose UEFI boot later.
- `MBR` for others). 
+3. Start Installation. Choose correct partition table type(`GPT` for UEFI supported motherboard, 
+with manually choose UEFI boot later. `MBR` for others). 
 You never need set a mount point of `/home` at this step, 
 for it should be mounted with another hard disk who will storage data. 
 Volume of these partitions should be set as below:
@@ -53,7 +53,8 @@ The warning means the partition start is not aligned. Anyway, `0KB` is not real 
 5. Run `mkfs.ext4 -F /dev/sdb1` to reformat partition (`parted`'s `ext4` parameter doesn't works, I don't know why yet).
 6. `mount /dev/sdb1 /home` to mount new disk as `/home`. To make this mount point auto-mounted, 
 add `/dev/sdb1  /home  ext4  defaults,noatime  0  2` at the last line of `/etc/fstab`, then restart.
-7. To configure auto-starting services with `systemd` (use the `sshd.service` as example):
+7. To configure auto-starting services with `systemd` (use the `sshd.service` as example, 
+you may also add `teamviewerd` and `rstudio-server.service` for auto-start them):
     1. Use the command like `sudo systemctl enable sshd.service` to enable the service, 
     and this should create a symlink in `/etc/systemd/system/multi-user.target.wants/` that looks like the following 
     (do **NOT** create this manually):
