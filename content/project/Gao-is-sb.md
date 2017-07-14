@@ -2,9 +2,9 @@
 highlight = true
 math = false
 external_link = ""
-summary = ""
+summary = "Dr. Gao's strange requirement oriented toolbox, a tool box for bioinformatics."
 date = "2017-05-16T15:53:20+08:00"
-title = "Dr. Gao's strange requirement oriented toolbox"
+title = "Gao's SB!"
 image = ""
 image_preview = ""
 tags = ['software']
