@@ -6,5 +6,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Gao-s-SB" />
     <orderEntry type="module" module-name="DYQuant" />
+    <orderEntry type="module" module-name="environBioLabToolKits" />
   </component>
 </module>

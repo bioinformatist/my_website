@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://E:/DYQuant/.idea/DYQuant.iml" filepath="E:/DYQuant/.idea/DYQuant.iml" />
       <module fileurl="file://E:/Gao-s-SB/.idea/Gao-s-SB.iml" filepath="E:/Gao-s-SB/.idea/Gao-s-SB.iml" />
+      <module fileurl="file://E:/environBioLabToolKits/.idea/environBioLabToolKits.iml" filepath="E:/environBioLabToolKits/.idea/environBioLabToolKits.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/my_website.iml" filepath="$PROJECT_DIR$/.idea/my_website.iml" />
     </modules>
   </component>
