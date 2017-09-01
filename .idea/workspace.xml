@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dee2805d-7de6-43ab-b713-fe32b1d258d1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public" afterPath="$PROJECT_DIR$/public" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/content/post/use-server-behind-NAT.md" afterPath="$PROJECT_DIR$/content/post/use-server-behind-nat.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/content/project/Gao-is-sb.md" afterPath="$PROJECT_DIR$/content/project/gao-is-sb.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/publication/human-two-novel-lncrnas.md" afterPath="$PROJECT_DIR$/content/publication/human-two-novel-lncrnas.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,12 +17,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="use-server-behind-nat.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/content/post/use-server-behind-nat.md">
+      <file leaf-file-name="gao-is-sb.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/content/project/gao-is-sb.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="176">
-                <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <first_editor relative-caret-position="-153">
+                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="human-two-novel-lncrnas.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/content/publication/human-two-novel-lncrnas.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="304">
+                <caret line="19" column="926" lean-forward="false" selection-start-line="19" selection-start-column="926" selection-end-line="19" selection-end-column="926" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="insect-mitochondria.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/content/publication/insect-mitochondria.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="128">
+                <caret line="8" column="15" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="15" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -68,6 +92,8 @@
         <option value="$PROJECT_DIR$/content/project/Gao-is-sb.md" />
         <option value="$PROJECT_DIR$/content/post/perl-oneliners.md" />
         <option value="$PROJECT_DIR$/content/project/lncrna-pipe.md" />
+        <option value="$PROJECT_DIR$/content/post/use-server-behind-nat.md" />
+        <option value="$PROJECT_DIR$/content/publication/human-two-novel-lncrnas.md" />
       </list>
     </option>
   </component>
@@ -117,6 +143,18 @@
               <item name="my_website" type="462c0819:PsiDirectoryNode" />
               <item name="content" type="462c0819:PsiDirectoryNode" />
               <item name="post" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="my_website" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my_website" type="462c0819:PsiDirectoryNode" />
+              <item name="content" type="462c0819:PsiDirectoryNode" />
+              <item name="project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="my_website" type="b2602c69:ProjectViewProjectNode" />
+              <item name="my_website" type="462c0819:PsiDirectoryNode" />
+              <item name="content" type="462c0819:PsiDirectoryNode" />
+              <item name="publication" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -389,7 +427,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://E:/Gao-s-SB/README.md" />
     <entry file="file://$PROJECT_DIR$/content/project/gao-is-sb.md" />
     <entry file="file://$PROJECT_DIR$/content/project/DYQuant.md" />
     <entry file="file://E:/Gao-s-SB/src/gaosb/gui/mainwindow.py">
@@ -527,7 +564,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/content/publication/_index.md" />
     <entry file="file://$PROJECT_DIR$/content/post/working-on-linux.md" />
-    <entry file="file://$PROJECT_DIR$/content/publication/human-two-novel-lncrnas.md" />
     <entry file="file://$PROJECT_DIR$/public/publication/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -575,7 +611,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/content/publication/srna-plant-virus.md" />
     <entry file="file://$PROJECT_DIR$/content/publication/srna-viruses.md" />
-    <entry file="file://$PROJECT_DIR$/content/project/gao-is-sb.md" />
     <entry file="file://E:/environBioLabToolKits/.gitignore" />
     <entry file="file://E:/Gao-s-SB/src/gaosb/gui/mainwindow.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -629,8 +664,41 @@
     <entry file="file://$PROJECT_DIR$/content/post/use-server-behind-nat.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="176">
-            <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <first_editor relative-caret-position="400">
+            <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/project/gao-is-sb.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-153">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/publication/insect-mitochondria.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="128">
+            <caret line="8" column="15" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="15" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/publication/human-two-novel-lncrnas.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="304">
+            <caret line="19" column="926" lean-forward="false" selection-start-line="19" selection-start-column="926" selection-end-line="19" selection-end-column="926" />
             <folding />
           </first_editor>
           <second_editor />

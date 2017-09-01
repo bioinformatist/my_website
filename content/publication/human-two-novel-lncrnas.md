@@ -1,9 +1,9 @@
 +++
 selected = true
 url_video = ""
-publication = "In *bioRxiv (2016)*"
+publication = "In *Mitochondrion*"
 url_code = ""
-date = "2016-12-17"
+date = "2017-08-09"
 highlight = true
 image_preview = ""
 image = ""
@@ -13,11 +13,11 @@ url_dataset = ""
 math = false
 abstract_short = ""
 publication_short = ""
-url_pdf = "http://biorxiv.org/content/biorxiv/early/2016/12/17/079517.full.pdf"
+url_pdf = "pdf/1-s2.0-S1567724917301058-main.pdf"
 url_project = ""
 publication_types = ["2"]
-authors = ["Shan Gao", "Xiaoxuan Tian", "***Yu Sun***", "etc."]
-abstract = "In this study, we introduced a general framework to use PacBio full-length transcriptome sequencing for the investigation of the fundamental problems in mitochondrial biology, e.g. genome arrangement, heteroplasmy, RNA processing and the regulation of transcription or replication. As a result, we produced the first full-length human mitochondrial transcriptome from the MCF7 cell line based on the PacBio platform and characterized the human mitochondrial transcriptome with more comprehensive and accurate information. The most important finding was two novel lnRNAs hsa-MDL1 and hsa-MDL1AS, which are encoded by the mitochondrial D-loop regions. We propose hsa-MDL1 and hsa-MDL1AS, as the precursors of transcription initiation RNAs (tiRNAs), belong to a novel class of long non-coding RNAs (lnRNAs), which is named as long tiRNAs (ltiRNAs). Based on the mitochondrial RNA processing model, the primary tiRNAs, precursors and mature tiRNAs could be discovered to completely reveal tiRNAs from their origins to functions. The MDL1 and MDL1AS lnRNAs and their regulation mechanisms exist ubiquitously from insects to human."
+authors = ["Shan Gao", "Xiaoxuan Tian", "Hong Chang", "***Yu Sun***", "etc."]
+abstract = "In this study, we established a general framework to use PacBio full-length transcriptome sequencing for the investigation of mitochondrial RNAs. As a result, we produced the first full-length human mitochondrial transcriptome using public PacBio data and characterized the human mitochondrial genome with more comprehensive and accurate information. Other results included determination of the H-strand primary transcript, identification of the ND5/ND6AS/tRNAGluAS transcript, discovery of palindrome small RNAs (psRNAs) and construction of the “mitochondrial cleavage” model, etc. These results reported for the first time in this study fundamentally changed annotations of human mitochondrial genome and enriched knowledge in the field of animal mitochondrial studies. The most important finding was two novel long non-coding RNAs (lncRNAs) of MDL1 and MDL1AS exist ubiquitously in animal mitochondrial genomes."
 
 +++
 
