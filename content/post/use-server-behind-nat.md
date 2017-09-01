@@ -24,4 +24,4 @@ GatewayPorts yes
 
 `systemctl restart sshd.service`
 
-https://linux.cn/article-5975-1.html
+http://arondight.me/2016/02/17/%E4%BD%BF%E7%94%A8SSH%E5%8F%8D%E5%90%91%E9%9A%A7%E9%81%93%E8%BF%9B%E8%A1%8C%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/
