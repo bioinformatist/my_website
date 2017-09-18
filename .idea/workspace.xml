@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dee2805d-7de6-43ab-b713-fe32b1d258d1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public" afterPath="$PROJECT_DIR$/public" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/publication/human-two-novel-lncrnas.md" afterPath="$PROJECT_DIR$/content/publication/human-two-novel-lncrnas.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/post/perl-oneliners.md" afterPath="$PROJECT_DIR$/content/post/perl-oneliners.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/post/working-on-linux.md" afterPath="$PROJECT_DIR$/content/post/working-on-linux.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/content/project/gao-is-sb.md" afterPath="$PROJECT_DIR$/content/project/gao-is-sb.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +24,8 @@
         <entry file="file://$PROJECT_DIR$/content/project/gao-is-sb.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-153">
-                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <first_editor relative-caret-position="656">
+                <caret line="41" column="55" lean-forward="false" selection-start-line="41" selection-start-column="55" selection-end-line="41" selection-end-column="55" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -30,12 +33,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="human-two-novel-lncrnas.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/content/publication/human-two-novel-lncrnas.md">
+      <file leaf-file-name="perl-oneliners.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/content/post/perl-oneliners.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="304">
-                <caret line="19" column="926" lean-forward="false" selection-start-line="19" selection-start-column="926" selection-end-line="19" selection-end-column="926" />
+              <first_editor relative-caret-position="1568">
+                <caret line="98" column="126" lean-forward="false" selection-start-line="98" selection-start-column="126" selection-end-line="98" selection-end-column="126" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -43,12 +46,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="insect-mitochondria.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/content/publication/insect-mitochondria.md">
+      <file leaf-file-name="working-on-linux.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/content/post/working-on-linux.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="128">
-                <caret line="8" column="15" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="15" />
+              <first_editor relative-caret-position="208">
+                <caret line="166" column="21" lean-forward="false" selection-start-line="166" selection-start-column="21" selection-end-line="166" selection-end-column="21" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -79,7 +82,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/content/post/working-on-linux.md" />
         <option value="$PROJECT_DIR$/content/post/maintaining-aur-packages.md" />
         <option value="E:/Gao-s-SB/src/gaosb/gui/mainwindow.py" />
         <option value="E:/Gao-s-SB/src/gaosb/core/app.py" />
@@ -90,10 +92,12 @@
         <option value="$PROJECT_DIR$/content/publication/srna-plant-virus.md" />
         <option value="$PROJECT_DIR$/content/project/DYQuant.md" />
         <option value="$PROJECT_DIR$/content/project/Gao-is-sb.md" />
-        <option value="$PROJECT_DIR$/content/post/perl-oneliners.md" />
         <option value="$PROJECT_DIR$/content/project/lncrna-pipe.md" />
         <option value="$PROJECT_DIR$/content/post/use-server-behind-nat.md" />
         <option value="$PROJECT_DIR$/content/publication/human-two-novel-lncrnas.md" />
+        <option value="$PROJECT_DIR$/content/project/gao-is-sb.md" />
+        <option value="$PROJECT_DIR$/content/post/perl-oneliners.md" />
+        <option value="$PROJECT_DIR$/content/post/working-on-linux.md" />
       </list>
     </option>
   </component>
@@ -125,7 +129,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -144,22 +147,11 @@
               <item name="content" type="462c0819:PsiDirectoryNode" />
               <item name="post" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="my_website" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my_website" type="462c0819:PsiDirectoryNode" />
-              <item name="content" type="462c0819:PsiDirectoryNode" />
-              <item name="project" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my_website" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my_website" type="462c0819:PsiDirectoryNode" />
-              <item name="content" type="462c0819:PsiDirectoryNode" />
-              <item name="publication" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -385,10 +377,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19829424" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20045386" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.497545" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -396,7 +388,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32934782" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31907895" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -563,7 +555,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/content/publication/_index.md" />
-    <entry file="file://$PROJECT_DIR$/content/post/working-on-linux.md" />
     <entry file="file://$PROJECT_DIR$/public/publication/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -633,31 +624,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/content/post/perl-oneliners.md" />
     <entry file="file://$PROJECT_DIR$/content/project/lncrna-pipe.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="848">
             <caret line="53" column="127" lean-forward="false" selection-start-line="53" selection-start-column="127" selection-end-line="53" selection-end-column="127" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/content/project/DYQuant.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="673">
+          <caret line="50" column="34" lean-forward="false" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="673">
-          <caret line="50" column="34" lean-forward="false" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -666,18 +654,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="400">
             <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/content/project/gao-is-sb.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-153">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -688,7 +664,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="128">
             <caret line="8" column="15" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="15" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -697,8 +672,40 @@
     <entry file="file://$PROJECT_DIR$/content/publication/human-two-novel-lncrnas.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="304">
-            <caret line="19" column="926" lean-forward="false" selection-start-line="19" selection-start-column="926" selection-end-line="19" selection-end-column="926" />
+          <first_editor relative-caret-position="16">
+            <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/project/gao-is-sb.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="656">
+            <caret line="41" column="55" lean-forward="false" selection-start-line="41" selection-start-column="55" selection-end-line="41" selection-end-column="55" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/post/perl-oneliners.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="1568">
+            <caret line="98" column="126" lean-forward="false" selection-start-line="98" selection-start-column="126" selection-end-line="98" selection-end-column="126" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content/post/working-on-linux.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="208">
+            <caret line="166" column="21" lean-forward="false" selection-start-line="166" selection-start-column="21" selection-end-line="166" selection-end-column="21" />
             <folding />
           </first_editor>
           <second_editor />

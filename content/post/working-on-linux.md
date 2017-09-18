@@ -130,6 +130,8 @@ ysun        ALL=(ALL)     NOPASSWD:ALL
 ## TeamViewer
 `sudo pacman -S teamviewer`
 
+Sometimes Teamviewer cannot connect to server after *Arch Linux* system upgraded, you should **restart** then have another try. 
+
 ## gcc-fortran
 `sudo pacman -S gcc-fortran`
 
@@ -159,8 +161,21 @@ sudo updatedb
 
 For RStudio server release, run `sudo yaourt -S rstudio-desktop-bin` instead.
 
-## Axel
-`sudo pacman -S axel`
+## Aria2
+`sudo pacman -S aria2`
+
+To speed up `yaourt`:
+
+It's `makepkg` but not `yaourt` downloading the packages,
+so change the content of /etc/makepkg.conf to use `aria2` instead of `curl`:
+
+```pre
+DLAGENTS=('ftp::/usr/bin/aria2c %u -o %o'
+          'http::/usr/bin/aria2c %u -o %o'
+          'https::/usr/bin/aria2c %u -o %o'
+          'rsync::/usr/bin/rsync --no-motd -z %u %o'
+          'scp::/usr/bin/scp -C %u %o')
+```
 
 ## Steam
 Steam outputs this error and exits.

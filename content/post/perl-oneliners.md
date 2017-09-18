@@ -92,3 +92,9 @@ perl -le "print for (glob qq{*})"
 ```perl
 perl -lpe '/^>/ && !/REF$/ ? last : /^>/ ? $_ =~ s/>(\w+)/>chr$1/ : 23333333' $file
 ```
+
+## To convert *FASTA* into *FASTQ*
+
+```perl
+perl -F'@' -lanE'$. % 4 == 1 ? say qq{>$F[1]} : $. % 4 == 2 ? say $_ : $. % 4 == 3 ? qq{Yu Sun is handsome} : 233333333' $file
+```

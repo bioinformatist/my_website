@@ -27,10 +27,10 @@ Use `vi  /etc/shadowsocks.json` to edit the file and fill in contents below:
 ```json
 {
     "server":"0.0.0.0",
-    "server_port":****,
+    "server_port":"port",
     "local_address": "127.0.0.1",
     "local_port":1080,
-    "password":******,
+    "password":"passwd",
     "timeout":300,
     "method":"aes-256-cfb",
     "fast_open": false,
@@ -69,3 +69,12 @@ There're also [shadowsocks for Android](https://github.com/shadowsocks/shadowsoc
 `supervisorctl start ssserver` for start a process.
 
 `supervisorctl shutdown` for killing all processes controlled by *supervisor*.
+
+## Known issue:
+
+Sometimes shadowsocks works fine in *Windows*,
+but your browser can not visit pages in *Arch Linux*, 
+it is because that too frequently updating `libQtShadowsocks` brings conflict.
+
+To [solve this problem](https://github.com/shadowsocks/shadowsocks-qt5/issues/550),
+you can downgrade `libQtShadowsocks` or change the encryption method from `AES-256-CFB` to `AES-256-CTR`.

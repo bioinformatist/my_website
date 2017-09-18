@@ -36,3 +36,7 @@ It is highly recommended to **NOT** add *signal/slot* in *QtDesigner*, for `pyui
 
 ## Tool 1: A wrapped sequence aligner depended on *NCBI MagicBlast*
 To be continued...
+
+|| <!-- empty table header -->
+|:--:| <!-- table header/body separator with center formatting -->
+| I'm centered! | <!-- cell gets column's alignment -->
