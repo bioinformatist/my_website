@@ -1,5 +1,6 @@
 +++
 tags = ['network']
+categories = []
 highlight = true
 date = "2017-02-15T22:48:04+08:00"
 title = "Break through GFW blockade with shadowsocks built on Digital Ocean"

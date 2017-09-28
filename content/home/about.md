@@ -37,5 +37,4 @@ weight = 1
 
 # Biography
 
-Yu Sun is a postgraduate student at Nankai University. His research interests include PacBio full-length transcriptome sequencing, NGS transcriptome sequencing and Microarrays. He built platforms for analysis data produced by technologies mentioned above in his group.
-
+Yu Sun is a postgraduate student at Nankai University. His research interests include PacBio full-length transcriptome sequencing, NGS transcriptome sequencing and Microarrays. He built platforms for analysis data produced by technologies mentioned above in his group. 

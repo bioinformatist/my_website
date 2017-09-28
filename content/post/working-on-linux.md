@@ -3,6 +3,7 @@ image = ""
 date = "2017-04-20T20:05:36+08:00"
 title = "Working with Manjaro KDE Linux"
 tags = ['Linux']
+categories = []
 highlight = true
 math = false
 summary = "Guide for say Goodbye to Windows"

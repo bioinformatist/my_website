@@ -1,9 +1,10 @@
 baseURL = "https://bioinformatist.github.io/"
 title = "Yu Sun's website"
-copyright = "&copy; 2016 Yu Sun"
+copyright = "&copy; 2017 Yu Sun"
 theme = "academic"
 enableEmoji = true
 footnotereturnlinkcontents = "<sup>^</sup>"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 # Enable comments by entering your Disqus shortname
 disqusShortname = ""
@@ -23,6 +24,7 @@ defaultContentLanguageInSubdir = false
   role = "Postgraduate of Bioinformatics"
   organization = "Nankai University"
   organization_url = ""
+  gravatar = false  # Get your avatar from Gravatar.com? (true/false)
   avatar = "portrait.jpg"
   email = "sun_yu@mail.nankai.edu.cn"
   address = "Building 4 Room 205, Nankai University, Tianjin, 300071, China"

@@ -3,6 +3,7 @@ date = "2017-07-05T09:37:43+08:00"
 highlight = true
 math = false
 tags = ['network']
+categories = []
 title = "How to use server that sits behind NAT"
 summary = 'A post that teach you for bypassing corporate firewall to make your server usable worldwide'
 
