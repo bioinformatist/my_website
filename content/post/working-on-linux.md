@@ -86,8 +86,11 @@ sudo pacman-mirrors -g
 sudo pacman-optimize && sync
 sudo pacman -Syyu
 ```
+
+{{% alert note %}}
 For some Chinese users, generating mirror list may raise an error (probably caused by network), 
 you can use `sudo pacman-mirrors -g -c china` instead.
+{{% /alert %}}
 
 `sudo nano /etc/pacman.conf`
 
@@ -101,9 +104,6 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 sudo pacman -Syyu
 sudo pacman -S archlinuxcn-keyring
 ```
-
-## VI && VIM
-`sudo pacman -S vim`
 
 ## Set users as sudoers
 By typing `sudo visudo`, you can change sudoers in *vi* mode, 
@@ -127,41 +127,48 @@ ysun        ALL=(ALL)     NOPASSWD:ALL
 ```
 {{% /alert %}}
 
-## TeamViewer
+## Install and Configure softwares
+
+### VI && VIM
+`sudo pacman -S vim`
+
+### TeamViewer
 `sudo pacman -S teamviewer`
 
-Sometimes Teamviewer cannot connect to server after *Arch Linux* system upgraded, you should **restart** then have another try. 
+{{% alert note %}}
+To make TeamViewer work properly under Fedora 25 with Gnome 3:
+1. Open the file `/etc/gdm/custom.conf`.
+2. Uncomment or add the line `WaylandEnable=false`.
+3. Save and reboot the system.
+{{% /alert %}}
 
-## gcc-fortran
+{{% alert note %}}
+Sometimes TeamViewer cannot connect to server after *Arch Linux* system upgraded, you should **restart** then have another try. 
+{{% /alert %}}
+
+### gcc-fortran
 `sudo pacman -S gcc-fortran`
 
-## locate
+### locate
 ```bash
 sudo pacman -S mlocate
 sudo updatedb
 ```
 
-## Tk
-
-`sudo pacman -S tk`
-
-## Atom
-`sudo pacman -S atom`
-
-## ibus-rime
+### ibus-rime
 `sudo pacman -S ibus-rime`
 
-## shadowsocks
+### shadowsocks
 `sudo pacman -S shadowsocks-qt5`
 
-## R && RStudio
-`sudo pacman -S r`
+### R && RStudio
+`sudo pacman -S microsoft-r-open`
 
 `sudo yaourt -S rstudio-desktop-bin`
 
-For RStudio server release, run `sudo yaourt -S rstudio-desktop-bin` instead.
+For RStudio server release, run `sudo yaourt -S rstudio-server-bin` instead.
 
-## Aria2
+### Aria2
 `sudo pacman -S aria2`
 
 To speed up `yaourt`:
@@ -177,7 +184,7 @@ DLAGENTS=('ftp::/usr/bin/aria2c %u -o %o'
           'scp::/usr/bin/scp -C %u %o')
 ```
 
-## Steam
+### Steam
 Steam outputs this error and exits.
 ```pre
 symbol lookup error: /usr/lib/libxcb-dri3.so.0: undefined symbol: xcb_send_request_with_fds
@@ -185,10 +192,14 @@ symbol lookup error: /usr/lib/libxcb-dri3.so.0: undefined symbol: xcb_send_reque
 For steam to work, disable dri3 in xorg config file or as a workaround run steam with `LIBGL_DRI3_DISABLE=1`.
 `LIBGL_DRI3_DISABLE=1 steam`
 
-## QQ (Do **NOT** install this on server)
+### JetBrains Toolbox
+
+Sometimes when the toolbox started after a system upgrade, the application consumes a lot CPU and displays a empty window. To solve this problem, add starting option `--disable-seccomp-filter-sandbox` in the system startup menu, then restart the application.
+
+### QQ (Do **NOT** install this on server)
 `yaourt crossover`
 
-## Virtualbox
+### Virtualbox
 See [*manjaro wiki*](https://wiki.manjaro.org/index.php?title=Virtualbox) here.
 
 [^1]: Need 190MB at least for *Fedora*, may even less for *Arch Linux*.

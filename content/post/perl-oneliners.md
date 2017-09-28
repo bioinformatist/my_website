@@ -9,23 +9,22 @@ summary = "Here I place some Perl-oneliners (may be not common used) by me. You 
 
 +++
 
-<!-- TOC START min:1 max:3 link:true update:true -->
-  - [Extract a reference sequence from a single-query *FASTA* file](#extract-a-reference-sequence-from-a-single-query-fasta-file)
-  - [Find plain-text files with same appendix in multiple directories recursively and merge them into one file](#find-plain-text-files-with-same-appendix-in-multiple-directories-recursively-and-merge-them-into-one-file)
-  - [Filter *FASTQ* by length of query](#filter-fastq-by-length-of-query)
-  - [To "flare out" *FASTA* queries](#to-flare-out-fasta-queries)
-  - [To calculate the proportion of gaps ("N" or "n") in a genome](#to-calculate-the-proportion-of-gaps-n-or-n-in-a-genome)
-  - [To get reads in *FASTQ* with specific length and count in descending order](#to-get-reads-in-fastq-with-specific-length-and-count-in-descending-order)
-  - [To calculate positive/negtive read counts separately](#to-calculate-positivenegtive-read-counts-separately)
-  - [To print file names in current directory](#to-print-file-names-in-current-directory)
-
-<!-- TOC END -->
-
 To use most of one-liners in this post, you should:
 
-1. If you're working on *Windows*, download and install []Active Perl](https://www.activestate.com/activeperl/downloads).
+1. If you're working on *Windows*, download and install [Active Perl](https://www.activestate.com/activeperl/downloads).
 2. Replace variable `$file` at the end of scripts by the real file name.
 3. Run the script as a command in `CMD`.
+
+- [Extract a reference sequence from a single-query *FASTA* file](#extract-a-reference-sequence-from-a-single-query-fasta-file)
+- [Find plain-text files with same appendix in multiple directories recursively and merge them into one file](#find-plain-text-files-with-same-appendix-in-multiple-directories-recursively-and-merge-them-into-one-file)
+- [Filter *FASTQ* by length of query](#filter-fastq-by-length-of-query)
+- [To "flare out" *FASTA* queries](#to-flare-out-fasta-queries)
+- [To calculate the proportion of gaps ("N" or "n") in a genome](#to-calculate-the-proportion-of-gaps-n-or-n-in-a-genome)
+- [To get reads in *FASTQ* with specific length and count in descending order](#to-get-reads-in-fastq-with-specific-length-and-count-in-descending-order)
+- [To calculate positive/negtive read counts separately](#to-calculate-positivenegtive-read-counts-separately)
+- [To print file names in current directory](#to-print-file-names-in-current-directory)
+- [To remove all patches and scaffolds etc., but leave only chromosomes in a genome reference file.](#to-remove-all-patches-and-scaffolds-etc-but-leave-only-chromosomes-in-a-genome-reference-file)
+- [To convert *FASTA* into *FASTQ*](#to-convert-fasta-into-fastq)
 
 ## Extract a reference sequence from a single-query *FASTA* file
 
