@@ -3,7 +3,7 @@ sudo: false
 language: go
 
 git:
-  depth: 1
+  depth: 2
 
 install: go get -v github.com/gohugoio/hugo
 
