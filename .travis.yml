@@ -2,8 +2,14 @@ sudo: false
 
 language: go
 
+# Thanks to this answer: https://stackoverflow.com/questions/15674064/github-submodule-access-rights-travis-ci/24600210#24600210
+# Handle git submodules yourself
 git:
-  depth: 2
+    submodules: false
+# Use sed to replace the SSH URL with the public URL, then initialize submodules
+before_install:
+    - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+    - git submodule update --init --recursive
 
 install: go get -v github.com/gohugoio/hugo
 
