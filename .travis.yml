@@ -2,15 +2,13 @@ sudo: false
 
 language: go
 
-# Thanks to this answer: https://stackoverflow.com/questions/15674064/github-submodule-access-rights-travis-ci/24600210#24600210
+# Thanks to the gist: https://gist.github.com/m3t/df29ec4e0aae167f99c8#file-travis-yml
 # Handle git submodules yourself
 git:
-    depth: 1
     submodules: false
 # Use sed to replace the SSH URL with the public URL, then initialize submodules
 before_install:
-    - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-    - git fetch --recurse-submodules
+    - git submodule update --init --remote --recursive
 
 install: go get -v github.com/gohugoio/hugo
 
