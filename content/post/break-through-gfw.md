@@ -11,13 +11,13 @@ summary = "Guide to break through Chinese government's GFW"
 +++
 
 1. If you're a student, try apply for a [student pack](https://education.github.com/pack/) on *GitHub*.
-2. Use code of *Digital Ocean* in student pack to register a **new account** and buy a droplet at *Los Angeles* (both node 1 & 2 is OK).
+2. Use code of *Digital Ocean* in student pack to register a **new account** and buy a droplet at *San Fransico* (both node 1 & 2 is OK, maybe 2 is better).
 3. Install *Fedora 25 (64 bit)* on your VPS then do as below:
 
 Install shadowsocks:
 
-```bash
-sudo install m2crypto python-setuptools
+```shell
+sudo dnf install m2crypto python-setuptools
 easy_install pip
 pip install shadowsocks
 ```
@@ -41,7 +41,7 @@ Use `vi  /etc/shadowsocks.json` to edit the file and fill in contents below:
 
 To keep shadowsocks running in background after you cut off SSH connection, you may use `supervisor`.
 
-```bash
+```shell
 sudo dnf install supervisor
 echo_supervisord_conf > /etc/supervisord.conf
 ```
@@ -71,7 +71,7 @@ There're also [shadowsocks for Android](https://github.com/shadowsocks/shadowsoc
 
 `supervisorctl shutdown` for killing all processes controlled by *supervisor*.
 
-## Known issue:
+## Known issue
 
 Sometimes shadowsocks works fine in *Windows*,
 but your browser can not visit pages in *Arch Linux*, 

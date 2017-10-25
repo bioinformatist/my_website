@@ -11,17 +11,18 @@ summary = "Guide for say Goodbye to Windows"
 +++
 
 ## OS Installation
+
 1. Preparation of a USB media.
     1. Download the proper [*Manjaro KDE Edition*](https://manjaro.org/get-manjaro/) disc image (ISO file).
     2. Check your device list using `sudo fdisk -l`.
-    3. Run command as `sudo dd if=~/Downloads/manjaro-kde-17.0.1-stable-x86_64.iso of=/dev/sdc` 
-    (You may replace the ISO file name and target device name by yourself). This will take even over 10 minutes. 
+    3. Run command as `sudo dd if=~/Downloads/manjaro-kde-17.0.1-stable-x86_64.iso of=/dev/sdc`
+    (You may replace the ISO file name and target device name by yourself). This will take even over 10 minutes.
     For Windows user, try software like *Fedora media writer*, *rawrite* and *UltraISO*.
 2. Restart your PC and press `F12` to choose boot from *USB flash driver*.
 3. Start Installation. Choose correct partition table type(`GPT` for UEFI supported motherboard, 
-with manually choose UEFI boot later. `MBR` for others). 
-You never need set a mount point of `/home` at this step, 
-for it should be mounted with another hard disk who will storage data. 
+with manually choose UEFI boot later. `MBR` for others).
+You never need set a mount point of `/home` at this step,
+for it should be mounted with another hard disk who will storage data.
 Volume of these partitions should be set as below:
 
     | Directories | Volume     | File system |
@@ -32,11 +33,11 @@ Volume of these partitions should be set as below:
 
 4. After installation, reboot and try mount `/home`.
     1. Use `sudo fdisk -l` to check all mountable devices.
-    2. Make partition: **Suppose another hard disk is recognized as `/dev/sdb`** (for example). 
-    If its volume less than 2TB, you can simply use `fdisk` to make partition table for it. 
-    Else, you may use another advanced tool like `parted`. 
+    2. Make partition: **Suppose another hard disk is recognized as `/dev/sdb`** (for example).
+    If its volume less than 2TB, you can simply use `fdisk` to make partition table for it.
+    Else, you may use another advanced tool like `parted`.
     Run `parted /dev/sdb` to start, you will get a `(parted)` prompt.
-    Here we want to create only one partition, whose type is `primary` with `ext4` file system, 
+    Here we want to create only one partition, whose type is `primary` with `ext4` file system,
     just type `mkpart primary ext4 0% 100%`.
 
     {{% alert note %}}
@@ -52,11 +53,11 @@ The warning means the partition start is not aligned. Anyway, `0KB` is not real 
     {{% /alert %}}
 
 5. Run `mkfs.ext4 -F /dev/sdb1` to reformat partition (`parted`'s `ext4` parameter doesn't works, I don't know why yet).
-6. `mount /dev/sdb1 /home` to mount new disk as `/home`. To make this mount point auto-mounted, 
+6. `mount /dev/sdb1 /home` to mount new disk as `/home`. To make this mount point auto-mounted,
 add `/dev/sdb1  /home  ext4  defaults,noatime  0  2` at the last line of `/etc/fstab`, then restart.
-7. To configure auto-starting services with `systemd` (use the `sshd.service` as example, 
+7. To configure auto-starting services with `systemd` (use the `sshd.service` as example,
 you may also add `teamviewerd` and `rstudio-server.service` for auto-start them):
-    1. Use the command like `sudo systemctl enable sshd.service` to enable the service, 
+    1. Use the command like `sudo systemctl enable sshd.service` to enable the service,
     and this should create a symlink in `/etc/systemd/system/multi-user.target.wants/` that looks like the following 
     (do **NOT** create this manually):
     
@@ -69,7 +70,7 @@ you may also add `teamviewerd` and `rstudio-server.service` for auto-start them)
     enable the service to respawn after a crash.
     3. Finally, reload the `systemd daemon`, followed by a restart of the service:
     
-        ```bash
+        ```shell
         sudo systemctl daemon-reload
         sudo systemctl restart sshd.service
         ```
@@ -78,18 +79,20 @@ you may also add `teamviewerd` and `rstudio-server.service` for auto-start them)
 you may run `cd; rm -rf .cache .config .kde4 .local` to reset your KDE environment.
 
 ## Autostart
+
 To make programs (Yakuake, etc.) autostart:
 Alt + F2 -> autostart -> Add Program...
 
 ## R!E!P!O!
-```bash
+
+```shell
 sudo pacman-mirrors -g
 sudo pacman-optimize && sync
 sudo pacman -Syyu
 ```
 
 {{% alert note %}}
-For some Chinese users, generating mirror list may raise an error (probably caused by network), 
+For some Chinese users, generating mirror list may raise an error (probably caused by network),
 you can use `sudo pacman-mirrors -g -c china` instead.
 {{% /alert %}}
 
@@ -101,18 +104,39 @@ SigLevel = Optional TrustedOnly
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 ```
 
-```bash
+```shell
 sudo pacman -Syyu
 sudo pacman -S archlinuxcn-keyring
 ```
 
+## Change default DNS server
+
+Install dnsutils first, then check DNS address.
+
+```shell
+sudo pacman -S dnsutils
+dig www.baidu.com
+```
+
+Edit `/etc/resolv.conf` to change DNS server by adding these lines:
+
+```pre
+# Google nameservers
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+
+Use `sudo chattr +i /etc/resolv.conf` to set write-protection for this file (**generally it will be reset during reboot**).
+
 ## Set users as sudoers
+
 By typing `sudo visudo`, you can change sudoers in *vi* mode, 
 then use `/root` with `n` (perhaps more than one time) 
 to change the position of cursor to the `User privilege specification` section. 
 Press `yyp` to copy & paste the current line, then `dft` to delete username 'root', 
 finally add the new sudoer's username. Press `:wq` to save and exit.
 Now this section of configuration file seems like:
+
 ```pre
 ##
 ## User privilege specification
@@ -123,9 +147,11 @@ ysun ALL=(ALL) ALL
 
 {{% alert note %}}
 If you want add a sudoer who never need password to run commands as root, you can set as:
+
 ```pre
 ysun        ALL=(ALL)     NOPASSWD:ALL
 ```
+
 {{% /alert %}}
 
 ## Install and Configure softwares
@@ -151,7 +177,7 @@ Sometimes TeamViewer cannot connect to server after *Arch Linux* system upgraded
 `sudo pacman -S gcc-fortran`
 
 ### locate
-```bash
+```shell
 sudo pacman -S mlocate
 sudo updatedb
 ```
