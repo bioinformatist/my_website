@@ -232,3 +232,11 @@ See [*manjaro wiki*](https://wiki.manjaro.org/index.php?title=Virtualbox) here.
 [^1]: Need 190MB at least for *Fedora*, may even less for *Arch Linux*.
 [^2]: As a server for bioinformatics use, we should use RAM first, so there's no need of too much memory of `swap`.
 [^3]: As the disk maintaining operation system, `/` should keep all remaining space.
+
+## For ubuntu
+
+### Install flash plugin for web browser
+
+```shell
+sudo apt-get install flashplugin-installer
+```
