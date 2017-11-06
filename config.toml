@@ -1,4 +1,4 @@
-baseURL = "https://bioinformatist.github.io/"
+baseurl = "https://bioinformatist.github.io/"
 title = "Yu Sun's Blog"
 copyright = "&copy; 2017 Yu Sun"
 theme = "academic"
@@ -87,7 +87,7 @@ defaultContentLanguageInSubdir = false
 
   # Link custom CSS and JS assets
   #   (relative to /static/css and /static/js respectively)
-  custom_css = ['pink.css']
+  custom_css = []
   custom_js  = []
 
   # Publication types.
@@ -127,7 +127,7 @@ defaultContentLanguageInSubdir = false
   [[params.social]]
     icon = "envelope"
     icon_pack = "fa"
-    link = "mailto:test@example.org"
+    link = "mailto:sun_yu@mail.nankai.edu.cn"
 
   [[params.social]]
     icon = "orcid"
