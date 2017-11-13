@@ -1,7 +1,7 @@
 +++
 title = "Webcast"
 date = 2017-10-29T10:43:24+08:00
-draft = True
+draft = true
 
 # Tags and categories
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.

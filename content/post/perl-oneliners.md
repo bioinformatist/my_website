@@ -1,6 +1,6 @@
 +++
 date = "2017-02-09T14:27:55+08:00"
-title = "Perl oneliners for Bioinformatics (Update: 2017/2/9)"
+title = "Perl oneliners for Bioinformatics"
 tags = ['Perl']
 categories = []
 highlight = true
