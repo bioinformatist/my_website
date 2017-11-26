@@ -56,7 +56,7 @@ Known that each kind of probe has four replication on the microarray, I chose th
 perl -MStatistics::Descriptive -F, -lane'!($.>= 12 and $F[3] =~ /miR|let/) and next; @tmp = split/,/, $_; $stat->add_data(@tmp[23..$#tmp]); $tvar = $stat->variance(); if ($tvar > $var{$F[3]}) {$var{$F[3]} = $tvar; $line{$F[3]} = join(qq{\t}, @tmp[3,23..$#tmp])} $stat->clear()}{ BEGIN{$stat = Statistics::Descriptive::Sparse->new()} print $line{$_} for keys %line' 'Raw Intensity File.csv' > expr
 ```
 
-Through checking the results, file `expr` has 2081 lines while the `Raw Intensity File.csv` file has 2085 probe records. What's the **four** ones remaining? Comparison applied to show difference.
+By checking results, file `expr` has 2081 lines while the `Raw Intensity File.csv` file has 2085 probe records. What's the **four** ones remaining? Comparison was applied to show difference.
 
 ```bash
 # To get a sorted miRNA name list
@@ -82,7 +82,7 @@ The result of `diff`:
 > hsa-miR-874-5p
 ```
 
-These miRNAs had more than one one probes. Considering the requirement of identifying differentially expressed miRNAs and this rare scenario, my procedure may works well up to now.
+These miRNAs had more than one probes. Considering the requirement of identifying differentially expressed miRNAs and this rare scenario, my procedure may works well up to now.
 
 {{% alert note %}}
 As microRNA probes bind more miRNAs than what you are interested in, for each miRNA, there may be more than one probe designed. See the answer [here](https://support.bioconductor.org/p/88210/#88231).
@@ -138,8 +138,6 @@ Why use such size for figures?
 > About figure size: Each figure should be able to fit on a single 8.5 x 11 inch page. Please do not send figure panels as individual files. We use three standard widths for figures: 1 column, 85 mm; 1.5 column, 114 mm; and 2 column, 174 mm (the full width of the page). Although your figure size may be reduced in the print journal, please keep these widths in mind. For Previews and other three-column formats, these widths are also applicable, though the width of a single column will be 55 mm. --From [Cell Press Digital Image Guidelines (click to see details)](http://www.cell.com/figureguidelines).
 
 Width and height, which comes first?
-
-What comes first?
 
 As a rule of thumb, the Graphics’ industry standard is width by height (width x height). Meaning that when you write your measurements, you write them from your point of view, beginning with the width.
 
@@ -222,7 +220,7 @@ save(DT.expr1.normalized.quantile, file = 'expr.normalized.RData', compress = 'x
 
 ## Principle components analysis
 ### By SVD (a "false" demo)
-Let's decomposite the matrix by [SVD (Singular Value Decomposition)](http://genomicsclass.github.io/book/pages/svd.html) method first.
+First, try decomposite the matrix by [SVD (Singular Value Decomposition)](http://genomicsclass.github.io/book/pages/svd.html) method.
 
 ```R
 setwd('~/github.com/bioinformatist/research_projects/project1/')
@@ -331,7 +329,7 @@ The biplot of data PCAed by SVD (with centered data):
 Quite similar with one by `stats::prcomp`, isn't it? :trollface:
 
 ## miRNAs filtering
-Log2 scale the data:
+Use log2 method to scale the data:
 
 ```R
 library(genefilter)
@@ -382,7 +380,7 @@ sum(expr.flr)
 [1] 2077
 ```
 
-Actually, none of features has been removed...
+Actually, **none** of features has been removed...
 
 ```R
 # Backup log2-scaled and filtered (no effect indeed)
