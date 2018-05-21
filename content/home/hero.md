@@ -2,7 +2,7 @@
 # Hero widget.
 widget = "hero"
 active = true
-date = 2017-10-15
+date = 2017-10-15T00:00:00
 
 title = "LncPipeReporter"
 
@@ -26,7 +26,7 @@ weight = 3
 
 A R package for automatically aggregating and summarizing lncRNA analysis results. :rocket:
 <br>
-<small><a id="academic-release" href="https://github.com/bioinformatist/LncPipeReporter/releases">Latest release</a></small>
+<small><a id="academic-release" href="https://github.com/bioinformatist/LncPipeReporter#installation">Latest release</a></small>
 <br><br>
 <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=bioinformatist&amp;repo=LncPipeReporter&amp;type=star&amp;count=true&amp;size=large" scrolling="0" width="160px" height="30px" frameborder="0"></iframe>
 <iframe style="display: inline-block;" src="https://ghbtns.com/github-btn.html?user=bioinformatist&amp;repo=LncPipeReporter&amp;type=fork&amp;count=true&amp;size=large" scrolling="0" width="158px" height="30px" frameborder="0"></iframe>

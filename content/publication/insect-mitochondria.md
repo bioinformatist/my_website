@@ -1,9 +1,9 @@
 +++
 title = "PacBio full-length transcriptome profiling of insect mitochondrial gene expression"
-date = "2016-06-16"
+date = 2016-06-16T00:00:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Shan Gao", "Yipeng Ren", "***Yu Sun***", "etc."]
+authors = ["Shan Gao", "Yipeng Ren", "***Yu Sun***", "etc"]
 
 # Publication type.
 # Legend:
@@ -17,11 +17,12 @@ authors = ["Shan Gao", "Yipeng Ren", "***Yu Sun***", "etc."]
 publication_types = ["2"]
 
 # Publication name and optional abbreviated version.
-publication = "In *RNA biology*"
+publication = "In *RNA Biology*"
 publication_short = ""
 
 # Abstract and optional shortened version.
 abstract = "In this study, we sequenced the first full-length insect transcriptome using the Erthesina fullo Thunberg based on the PacBio platform. We constructed the first quantitative transcription map of animal mitochondrial genomes and built a straightforward and concise methodology to investigate mitochondrial gene transcription, RNA processing, mRNA maturation and several other related topics. Most of the results were consistent with the previous studies, while to the best of our knowledge some findings were reported for the first time in this study. The new findings included the high levels of mitochondrial gene expression, the 3′ polyadenylation and possible 5′ m7G caps of rRNAs, the isoform diversity of 12S rRNA, the polycistronic transcripts and natural antisense transcripts of mitochondrial genes et al. These findings could challenge and enrich fundamental concepts of mitochondrial gene transcription and RNA processing, particularly of the rRNA primary (sequence) structure. The methodology constructed in this study can also be used to study gene expression or RNA processing of nuclear genomes."
+abstract_short = ""
 
 # Featured image thumbnail (optional)
 image_preview = ""
@@ -32,7 +33,12 @@ selected = false
 # Projects (optional).
 #   Associate this publication with one or more of your projects.
 #   Simply enter the filename (excluding '.md') of your project file in `content/project/`.
-# projects = [""]
+#   Otherwise, set `projects = []`.
+projects = []
+
+# Tags (optional).
+#   Set `tags = []` for no tags, or use the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
+tags = ['PacBio', 'Full-length transcriptome']
 
 # Links (optional).
 url_pdf = "pdf/gao2016.pdf"

@@ -1,6 +1,3 @@
-[submodule "public"]
-	path = public
-	url = https://github.com/bioinformatist/bioinformatist.github.io.git
 [submodule "themes/academic"]
 	path = themes/academic
 	url = https://github.com/gcushen/hugo-academic.git

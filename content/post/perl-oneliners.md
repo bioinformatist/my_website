@@ -1,13 +1,12 @@
 +++
-date = "2017-02-09T14:27:55+08:00"
 title = "Perl oneliners for Bioinformatics"
-tags = ['Perl']
-categories = []
-highlight = true
-math = false
-image = ""
-summary = "Here I place some Perl-oneliners (may be not common used) by me. You can use them to modify, count , summarize or change file type on plain-text (like fastx)."
 
+date = 2017-02-09T14:27:55
+lastmod = 2018-05-21T00:00:00
+draft = false
+
+tags = ["Perl"]
+summary = "Here I place some Perl-oneliners (may be not common used) by me. You can use them to modify, count , summarize or change file type on plain-text (like fastx)."
 +++
 
 To use most of one-liners in this post, you should:

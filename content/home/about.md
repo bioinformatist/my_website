@@ -2,7 +2,7 @@
 # About/Biography widget.
 widget = "about"
 active = true
-date = "2016-04-20T00:00:00"
+date = 2016-04-20T00:00:00
 
 # Order that this section will appear in.
 weight = 5
@@ -11,15 +11,15 @@ weight = 5
 [interests]
   interests = [
     "Bioinformatics",
-    "Coding",
+    "Programming",
     "Data Visualization"
   ]
 
 # List your qualifications (such as academic degrees).
-#[[education.courses]]
-#  course = "PhD in Artificial Intelligence"
-#  institution = "Stanford University"
-#  year = 2012
+[[education.courses]]
+  course = "PhD in Environmental Engineering"
+  institution = "Sun Yat-sen University"
+  year = 2018
 
 [[education.courses]]
   course = "MSc in Bioinformatics"
@@ -35,4 +35,4 @@ weight = 5
 
 # Biography
 
-Yu Sun is a postgraduate student at Nankai University. His research interests include PacBio full-length transcriptome sequencing, NGS transcriptome sequencing and Microarrays. He built platforms for analysis data produced by technologies mentioned above in his group. 
+Yu Sun will be a PhD student at Sun Yat-sen University soon at [Dr. Wang's Lab](http://environbiolab.sysu.edu.cn/index.html). His research interests will include 16S amplicon sequencing, metagenomics and microarrays. He built platforms with analysis tools in his group.

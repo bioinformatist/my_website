@@ -1,15 +1,15 @@
 +++
-tags = ['network']
-categories = []
-highlight = true
-date = 2017-02-15
-lastmod = 2017-11-23
 title = "Break through GFW blockade with shadowsocks (built on Digital Ocean or AWS)"
-math = false
-image = ""
-summary = "Guide to break through Chinese government's GFW"
 
+date = 2017-02-15T00:00:00
+lastmod = 2017-11-23T00:00:00
+draft = false
+
+tags = ["Network"]
+summary = "Guide to break through Chinese government's GFW"
 +++
+
+{{% toc %}}
 
 ## On *Digital Ocean*
 
@@ -165,6 +165,6 @@ You should use `AES-256-CTR` as encryption method at ArchLinux to avoid problems
 
 ServerSpeeder cannot be used on Ubuntu 16.04 now.
 
-### net-speeder
+#### net-speeder
 
 net-speeder will double the network traffic. Not recommended.

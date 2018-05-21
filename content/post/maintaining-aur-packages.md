@@ -1,16 +1,10 @@
 +++
-date = "2017-06-19T20:39:50+08:00"
-highlight = true
-math = false
-tags = ['Linux']
-categories = []
 title = "How to maintain an AUR package"
-summary = "My first experience in maintaining packages on AUR (Arch User Repository)"
 
-[header]
-  caption = "My first experience in maintaining packages on AUR (Arch User Repository)"
-  image = ""
+date = 2017-06-19T20:39:50
+draft = true
 
+tags = ["Linux"]
 +++
 
 ## Generating an SSH key pair

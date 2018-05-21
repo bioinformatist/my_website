@@ -3,13 +3,18 @@
 # This widget displays all projects from `content/project/`.
 widget = "projects"
 active = true
-date = "2016-04-20T00:00:00"
+date = 2016-04-20T00:00:00
 
 title = "Projects"
 subtitle = ""
 
 # Order that this section will appear in.
 weight = 50
+
+# Content.
+# Display content from the following folder.
+# For example, `folder = "project"` displays content from `content/project/`.
+folder = "project"
 
 # View.
 # Customize how projects are displayed.
