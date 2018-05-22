@@ -1,14 +1,30 @@
 +++
-highlight = true
-external_link = ""
-image_preview = "project_img_preview/heatmap.dd.OP vs H.png"
-summary = "Xiaoya Zhou's miRNA mircroarray data analysis."
-tags = ['miRNA', 'microarray']
-math = false
-date = "2017-02-09T15:37:51+08:00"
-title = "Research Project 1"
-image = ""
+# Date this page was created.
+date = 2017-02-09T15:37:51+08:00
 
+# Project title.
+title = "A research project"
+
+# Project summary to display on homepage.
+summary = "Somebody's miRNA mircroarray data analysis."
+
+# Optional image to display on homepage (relative to `static/img/` folder).
+image_preview = "project_img_preview/heatmap.dd.OP vs H.png"
+
+# Tags: can be used for filtering projects.
+# Example: `tags = ["machine-learning", "deep-learning"]`
+tags = ['miRNA', 'microarray']
+
+# Optional external URL for project (replaces project detail page).
+external_link = ""
+
+# Does the project detail page use math formatting?
+math = false
+
+# Optional featured image (relative to `static/img/` folder).
+[header]
+image = ""
+caption = ""
 +++
 
 <!-- TOC START min:1 max:3 link:true update:true -->

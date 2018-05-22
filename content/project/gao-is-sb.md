@@ -1,14 +1,30 @@
 +++
-highlight = true
-math = false
-external_link = ""
-summary = "Dr. Gao's strange requirement oriented toolbox, a tool box for bioinformatics."
-date = "2017-05-16T15:53:20+08:00"
-title = "Gao's SB!"
-image = ""
-image_preview = ""
-tags = ['software']
+# Date this page was created.
+date = 2017-05-16T15:53:20+08:00
 
+# Project title.
+title = "Gao's SB!"
+
+# Project summary to display on homepage.
+summary = "Dr. Gao's strange requirement oriented toolbox, a tool box for bioinformatics."
+
+# Optional image to display on homepage (relative to `static/img/` folder).
+image_preview = ""
+
+# Tags: can be used for filtering projects.
+# Example: `tags = ["machine-learning", "deep-learning"]`
+tags = ["software"]
+
+# Optional external URL for project (replaces project detail page).
+external_link = ""
+
+# Does the project detail page use math formatting?
+math = false
+
+# Optional featured image (relative to `static/img/` folder).
+[header]
+image = ""
+caption = ""
 +++
 
 This project post is only for maintaining the process and problems, but not a document.
