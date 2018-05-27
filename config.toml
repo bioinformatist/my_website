@@ -3,7 +3,7 @@
 
 # The URL of your website.
 # End your URL with a `/` trailing slash, e.g. `https://example.com/`.
-baseurl = "https://bioinformatist.github.io/"
+baseurl = "https://icannotendure.space/"
 
 # Title of your site
 title = "Yu Sun's Blog"
@@ -55,7 +55,7 @@ enableGitInfo = true
 
   # Your details.
   name = "Yu Sun"
-  role = "Postgraduate of Bioinformatics"
+  role = "PhD student of Bioinformatics"
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
