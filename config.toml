@@ -252,7 +252,7 @@ enableGitInfo = true
   url = "#about"
   weight = 1
 
-[[languages.zh.menu.main]]
+[[Languages.zh.menu.main]]
   name = "主页"
   url = "#about"
   weight = 1
@@ -262,7 +262,7 @@ enableGitInfo = true
   url = "#publications_selected"
   weight = 2
 
-[[languages.zh.menu.main]]
+[[Languages.zh.menu.main]]
   name = "出版物"
   url = "#publications_selected"
   weight = 2
@@ -272,8 +272,8 @@ enableGitInfo = true
   url = "#posts"
   weight = 3
 
-[[languages.zh.menu.main]]
-  name = "文章"
+[[Languages.zh.menu.main]]
+  name = "真·日记"
   url = "#posts"
   weight = 3
 
@@ -282,7 +282,7 @@ enableGitInfo = true
   url = "#projects"
   weight = 4
 
-[[languages.zh.menu.main]]
+[[Languages.zh.menu.main]]
   name = "项目"
   url = "#projects"
   weight = 4
@@ -292,7 +292,7 @@ enableGitInfo = true
   url = "#contact"
   weight = 5
 
-[[languages.zh.menu.main]]
+[[Languages.zh.menu.main]]
   name = "联系我"
   url = "#contact"
   weight = 5

@@ -27,7 +27,7 @@ preview = true
 sudo pacman -S shadowsocks-libev
 ```
 
-写好配置文件（具体写法就见英文版教程吧，几乎一致的）：
+写好配置文件（具体写法就见[英文版教程]({{< ref "post/break-through-gfw.md" >}})吧，几乎一致的）：
 ```shell
 sudo mkdir /etc/shadowsocks
 # 我理你用nano还是vim还是个什么鬼，就编辑一下文本文件嘛
@@ -35,7 +35,7 @@ sudo mkdir /etc/shadowsocks
 sudo vim /etc/shadowsocks/config.json
 ```
 
-使用`systemctl`管理ss的daemon进程：
+使用`systemctl`管理ss的daemon进程（这个在介绍[Manjaro Linux的使用]({{< ref "post/working-on-linux.md" >}})的时候提过）：
 ```shell
 # 配置文件的前缀名为config，因此此处为@config
 sudo systemctl enable shadowsocks-libev@config

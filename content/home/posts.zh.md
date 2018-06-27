@@ -5,7 +5,7 @@ widget = "posts"
 active = true
 date = 2016-04-20T00:00:00
 
-title = "真·日记"
+title = "\"日\"记？不存在的"
 subtitle = ""
 
 # Order that this section will appear in.
