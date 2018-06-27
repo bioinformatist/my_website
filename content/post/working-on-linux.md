@@ -16,7 +16,10 @@ summary = "Guide for say Goodbye to Windows"
     2. Check your device list using `sudo fdisk -l`.
     3. Run command as `sudo dd if=~/Downloads/manjaro-kde-17.0.1-stable-x86_64.iso of=/dev/sdc`
     (You may replace the ISO file name and target device name by yourself). This will take even over 10 minutes.
-    For Windows user, try software like *Fedora media writer*, *rawrite* and *UltraISO*.
+    For Windows user, it is highly recommended to use *Rufus*, which can automatically process with more than one partition. Set the options as:
+    ![rufus settings](/img/post_img/rufus_main.png)
+    When it comes with a dialog box for choosing writing mode, choose as:
+    ![rufus dd](/img/post_img/rufus_dd.png) 
 2. Restart your PC and press `F12` to choose boot from *USB flash driver*.
 3. Start Installation. Choose correct partition table type(`GPT` for UEFI supported motherboard, 
 with manually choose UEFI boot later. `MBR` for others).
@@ -85,8 +88,10 @@ Alt + F2 -> autostart -> Add Program...
 ## R!E!P!O!
 
 ```shell
+# Testing and optimizing mirrors
 sudo pacman-mirrors -g
 sudo pacman-optimize && sync
+# Updating OS
 sudo pacman -Syyu
 ```
 
@@ -95,7 +100,7 @@ For some Chinese users, generating mirror list may raise an error (probably caus
 you can use `sudo pacman-mirrors -g -c china` instead.
 {{% /alert %}}
 
-`sudo nano /etc/pacman.conf`
+Then, for all Chinese users, it is better to add archlinuxcn mirror for *pacman*. Enter `sudo nano /etc/pacman.conf` then:
 
 ```pre
 [archlinuxcn]
@@ -103,10 +108,22 @@ SigLevel = Optional TrustedOnly
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 ```
 
+You should put it **bebind** the main repos (for example, core) to prevent conflicts. Then:
+
 ```shell
 sudo pacman -Syyu
 sudo pacman -S archlinuxcn-keyring
 ```
+
+Finally, use *aurman* for enhanced package manager:
+
+```shell
+sudo pacman -S aurman
+```
+
+{{% alert warning %}}
+**DO NOT** use *yaourt* any more nowadays. It's [out of date](https://wiki.archlinux.org/index.php/AUR_helpers#Active).
+{{% /alert %}}
 
 ## Change default DNS server
 
@@ -148,21 +165,23 @@ ysun ALL=(ALL) ALL
 If you want add a sudoer who never need password to run commands as root, you can set as:
 
 ```pre
-ysun        ALL=(ALL)     NOPASSWD:ALL
+ysun ALL=(ALL) NOPASSWD:ALL
 ```
+
+You should only use **one space** as separator in this section (perhaps in the whole file) for correctly recognized.
 
 {{% /alert %}}
 
 ## Install and Configure softwares
 
-### VI && VIM
+### VIM
 `sudo pacman -S vim`
 
 ### TeamViewer
 `sudo pacman -S teamviewer`
 
 {{% alert note %}}
-To make TeamViewer work properly under Fedora 25 with Gnome 3:
+To make TeamViewer work properly under *Fedora 25* with *Gnome 3*:
 1. Open the file `/etc/gdm/custom.conf`.
 2. Uncomment or add the line `WaylandEnable=false`.
 3. Save and reboot the system.
@@ -175,31 +194,23 @@ Sometimes TeamViewer cannot connect to server after *Arch Linux* system upgraded
 ### gcc-fortran
 `sudo pacman -S gcc-fortran`
 
+{{% alert note %}}
+Use *gcc-fortran* instead of *gfortran* (may cause conflicts when system upgrade).
+{{% /alert %}}
+
 ### locate
 ```shell
 sudo pacman -S mlocate
+# Make cache before you first use it
 sudo updatedb
 ```
-
-### ibus-rime
-`sudo pacman -S ibus-rime`
-
-### shadowsocks
-`sudo pacman -S shadowsocks-qt5`
-
-### R && RStudio
-`sudo pacman -S microsoft-r-open`
-
-`sudo yaourt -S rstudio-desktop-bin`
-
-For RStudio server release, run `sudo yaourt -S rstudio-server-bin` instead.
 
 ### Aria2
 `sudo pacman -S aria2`
 
-To speed up `yaourt`:
+To speed up `aurman`:
 
-It's `makepkg` but not `yaourt` downloading the packages,
+It's `makepkg` but not `aurman` downloading the packages,
 so change the content of /etc/makepkg.conf to use `aria2` instead of `curl`:
 
 ```pre
@@ -210,7 +221,15 @@ DLAGENTS=('ftp::/usr/bin/aria2c %u -o %o'
           'scp::/usr/bin/scp -C %u %o')
 ```
 
+### R && RStudio
+`sudo pacman -S microsoft-r-open`
+
+`aurman -S rstudio-desktop-bin`
+
+For RStudio server release, run `sudo yaourt -S rstudio-server-bin` instead.
+
 ### Steam
+
 Steam outputs this error and exits.
 ```pre
 symbol lookup error: /usr/lib/libxcb-dri3.so.0: undefined symbol: xcb_send_request_with_fds
@@ -221,9 +240,6 @@ For steam to work, disable dri3 in xorg config file or as a workaround run steam
 ### JetBrains Toolbox
 
 Sometimes when the toolbox started after a system upgrade, the application consumes a lot CPU and displays a empty window. To solve this problem, add starting option `--disable-seccomp-filter-sandbox` in the system startup menu, then restart the application.
-
-### QQ (Do **NOT** install this on server)
-`yaourt crossover`
 
 ### Virtualbox
 See [*manjaro wiki*](https://wiki.manjaro.org/index.php?title=Virtualbox) here.

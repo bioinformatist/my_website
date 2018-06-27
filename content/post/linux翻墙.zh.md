@@ -20,7 +20,7 @@ preview = true
 
 +++
 
-本文主要介绍如何在ArchLinux下部署client端的SS，考虑到主要也是国人才有这种需求，就直接丢中文版blog了。
+本文主要介绍如何在Arch Linux下部署client端的SS，考虑到主要也是国人才有这种需求，就直接丢中文版blog了。
 
 废话少说，`shadowsocks-libev`是C语言编写的轻量版的SS。先安装：
 ```shell
