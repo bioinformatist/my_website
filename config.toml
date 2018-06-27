@@ -28,7 +28,7 @@ googleAnalytics = "UA-107187080-1"
 # Default language to use (if you setup multilingual support)
 defaultContentLanguage = "en"
 hasCJKLanguage = true  # Set `true` for Chinese/Japanese/Korean languages.
-defaultContentLanguageInSubdir = false
+defaultContentLanguageInSubdir = true
 
 # Get last modified date for content from Git?
 enableGitInfo = true
@@ -149,7 +149,7 @@ enableGitInfo = true
   #   For more info on the highlighting options, see:
   #   https://sourcethemes.com/academic/post/writing-markdown-latex/#highlighting-options
   highlight = true
-  highlight_languages = ['r', 'python', 'perl', 'shell', 'json', 'pre', 'bash']
+  highlight_languages = ['r', 'python', 'perl', 'shell', 'json', 'pre', 'bash', 'cpp']
   highlight_style = "monokai"
 
   # Enable native social sharing buttons?
@@ -252,8 +252,18 @@ enableGitInfo = true
   url = "#about"
   weight = 1
 
+[[languages.zh.menu.main]]
+  name = "主页"
+  url = "#about"
+  weight = 1
+
 [[menu.main]]
   name = "Publications"
+  url = "#publications_selected"
+  weight = 2
+
+[[languages.zh.menu.main]]
+  name = "出版物"
   url = "#publications_selected"
   weight = 2
 
@@ -262,13 +272,28 @@ enableGitInfo = true
   url = "#posts"
   weight = 3
 
+[[languages.zh.menu.main]]
+  name = "文章"
+  url = "#posts"
+  weight = 3
+
 [[menu.main]]
   name = "Projects"
   url = "#projects"
   weight = 4
 
+[[languages.zh.menu.main]]
+  name = "项目"
+  url = "#projects"
+  weight = 4
+
 [[menu.main]]
   name = "Contact"
+  url = "#contact"
+  weight = 5
+
+[[languages.zh.menu.main]]
+  name = "联系我"
   url = "#contact"
   weight = 5
 
@@ -284,3 +309,6 @@ enableGitInfo = true
 # Configure the English version of the website.
 [Languages.en]
   languageCode = "en-us"
+
+[Languages.zh]
+  languageCode = "zh-cn"
