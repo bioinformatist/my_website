@@ -9,6 +9,8 @@ tags = ["Linux"]
 summary = "Guide for say Goodbye to Windows"
 +++
 
+{{% toc %}}
+
 ## OS Installation
 
 1. Preparation of a USB media.
