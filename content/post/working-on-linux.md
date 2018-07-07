@@ -127,6 +127,16 @@ sudo pacman -S aurman
 **DO NOT** use *yaourt* any more nowadays. It's [out of date](https://wiki.archlinux.org/index.php/AUR_helpers#Active).
 {{% /alert %}}
 
+To upgrage the whole system, you should run `aurman -Syu` weekly.
+If there's message like this:
+
+```pre
+~~ the following packages are neither in known repos nor in the aur
+:: pcmciautils-018-8
+```
+
+Then you can run `pacman -Rns $(pacman -Qtdq)` to remove all unused packages.
+
 ## Change default DNS server
 
 Install dnsutils first, then check DNS address.
