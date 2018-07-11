@@ -47,6 +47,6 @@ sudo systemctl start shadowsocks-libev@config
 
 > 插嘴一句，本身就是齐胖胖他们医院的网络爆炸，所以只好搞这样一出来安装RStudio Server。没想到回到博士课题组修电脑还是用到了hhhhh
 
-先用命令`sudo pacman -S proxychains-ng`安装，然后同样也要写配置，就很简单了，直接`sudo vim /etc/proxychains.conf`编辑，加一行`socks5 127.0.0.1 1080`。
+先用命令`sudo pacman -S proxychains-ng`安装，然后同样也要写配置，就很简单了，直接`sudo vim /etc/proxychains.conf`编辑，把原来`[ProxyList]`下面的内容去掉，加上`socks5 127.0.0.1 1080`。
 
 接下来就是使用了。只要在需要使用代理的命令前面加上`proxychains4`就可以，比如`proxychains4 aurman -S rstudio-server-bin`这样。

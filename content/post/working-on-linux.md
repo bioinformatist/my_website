@@ -137,6 +137,16 @@ If there's message like this:
 
 Then you can run `pacman -Rns $(pacman -Qtdq)` to remove all unused packages.
 
+{{% alert note %}}
+For some Chinese users, `aurman` may raise connection error,
+you can edit `~/.config/aurman` to set longer timeout for it.
+
+```pre
+[miscellaneous]
+aur_timeout=100
+```
+{{% /alert %}}
+
 ## Change default DNS server
 
 Install dnsutils first, then check DNS address.
