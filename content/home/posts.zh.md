@@ -5,8 +5,8 @@ widget = "posts"
 active = true
 date = 2016-04-20T00:00:00
 
-title = "\"日\"记？不存在的"
-subtitle = ""
+title = "\"日\"记？"
+subtitle = "不存在的"
 
 # Order that this section will appear in.
 weight = 40
