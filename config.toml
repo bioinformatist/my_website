@@ -64,9 +64,9 @@ enableGitInfo = true
   gravatar = false  # Get your avatar from Gravatar.com? (true/false)
   avatar = "portrait.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
   email = "sun_yu@mail.nankai.edu.cn"
-  address = "Not available recently"
-  office_hours = "Monday to Friday: 08:30 to 11:00 and 14:30 to 17:00; Saturday & Sunday: 10:30 to 16:00; Or email for appointment"
-  phone = "Not available recently"
+  address = "Room A303, Teaching & experiment center #B building, Xiaoguwei Street, The East Campus of Sun Yat-Sen University, Guangzhou, China"
+  office_hours = "Monday to Saturday: 09:30 to 18:00; Or email for appointment"
+  phone = "(+86)13044240304"
   skype = ""
   telegram = ""
 
@@ -262,10 +262,10 @@ enableGitInfo = true
   url = "#publications_selected"
   weight = 2
 
-[[Languages.zh.menu.main]]
-  name = "出版物"
-  url = "#publications_selected"
-  weight = 2
+# [[Languages.zh.menu.main]]
+#   name = "出版物"
+#   url = "#publications_selected"
+#   weight = 2
 
 [[menu.main]]
   name = "Posts"
@@ -277,25 +277,35 @@ enableGitInfo = true
   url = "#posts"
   weight = 3
 
+# [[menu.main]]
+#   name = "Talks"
+#   url = "#talks"
+#   weight = 4
+
+[[Languages.zh.menu.main]]
+  name = "讨论"
+  url = "#talks"
+  weight = 4
+
 [[menu.main]]
   name = "Projects"
   url = "#projects"
-  weight = 4
+  weight = 5
 
 [[Languages.zh.menu.main]]
   name = "项目"
   url = "#projects"
-  weight = 4
+  weight = 5
 
 [[menu.main]]
   name = "Contact"
   url = "#contact"
-  weight = 5
+  weight = 6
 
 [[Languages.zh.menu.main]]
   name = "联系我"
   url = "#contact"
-  weight = 5
+  weight = 6
 
 # Taxonomies.
 [taxonomies]
