@@ -139,7 +139,7 @@ Then you can run `pacman -Rns $(pacman -Qtdq)` to remove all unused packages.
 
 {{% alert note %}}
 For some Chinese users, `aurman` may raise connection error,
-you can edit `~/.config/aurman` to set longer timeout for it.
+you can edit `~/.config/aurman/aurman_config` to set longer timeout for it.
 
 ```pre
 [miscellaneous]
