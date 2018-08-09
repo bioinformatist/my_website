@@ -54,6 +54,21 @@ Warning: The resulting partition is not properly aligned for best performance.
 Ignore/Cancel?
 
 The warning means the partition start is not aligned. Anyway, `0KB` is not real start of your disk.
+
+What you should do is to remove all partitions on the disk then run the command like `./parted_mkpart_calc.sh sdb` (the shell script can be obtained [here](/code/parted_mkpart_calc.sh)), then you will see imformations like:
+
+```pre
+Using default 1 MiB default alignment in calc
+Calculated alignment for /dev/sdb (gpt) is: 2048s
+
+If you would be root, you could create partition with:
+# parted /dev/sdb mkpart [name] [type] 2048s 15624996863s
+Verify partition alignment with:
+# parted /dev/sdb align-check optimal 1
+Should return: 1 aligned
+```
+
+So you can try `parted /dev/sdb mkpart primary ext4 2048s 15624996863s` and finally run `parted /dev/sdb align-check optimal 1` for checking.
     {{% /alert %}}
 
 5. Run `mkfs.ext4 -F /dev/sdb1` to reformat partition (`parted`'s `ext4` parameter doesn't works, I don't know why yet).
@@ -233,7 +248,7 @@ sudo updatedb
 To speed up `aurman`:
 
 It's `makepkg` but not `aurman` downloading the packages,
-so change the content of /etc/makepkg.conf to use `aria2` instead of `curl`:
+so change the content of `/etc/makepkg.conf` to use `aria2` instead of `curl`:
 
 ```pre
 DLAGENTS=('ftp::/usr/bin/aria2c %u -o %o'
