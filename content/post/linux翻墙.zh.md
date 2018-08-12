@@ -49,4 +49,6 @@ sudo systemctl start shadowsocks-libev@config
 
 先用命令`sudo pacman -S proxychains-ng`安装，然后同样也要写配置，就很简单了，直接`sudo vim /etc/proxychains.conf`编辑，把原来`[ProxyList]`下面的内容去掉，加上`socks5 127.0.0.1 1080`。
 
+> proxychains-ng的输出非常烦躁...如果觉得眼睛花，在刚刚的配置文件里面有一行`quietmode`，把前面的注释取消掉就好了。
+
 接下来就是使用了。只要在需要使用代理的命令前面加上`proxychains4`就可以，比如`proxychains4 aurman -S rstudio-server-bin`这样。
