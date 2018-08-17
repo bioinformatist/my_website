@@ -104,3 +104,17 @@ Warning message:
 In file(filename, "r", encoding = encoding) :
   URL 'https://bioconductor.org/biocLite.R': status was 'Timeout was reached'
 ```
+
+### rJava各种不舒服
+
+还是要先确认一下Java有妥善安装（`java --version`），然后`sudo R CMD javareconf`一下，记住里面的版本信息；
+
+然后加载使用到rJava的包还是有可能报出以下异常的：`libjvm.so: cannot open shared object file: No such file or directory`。
+
+这个时候想到可能是编译安装的时候，`ld`没做好，程序找不到动态链接库了。然后先`sudo find /usr -name libjvm.so`找一下，比如我这里是这样的结果：
+
+```pre
+/usr/lib/jvm/java-8-openjdk/jre/lib/amd64/server/libjvm.so
+```
+
+那就把这个路径（不包括`.so`文件名），加入`/etc/ld.so.conf`里面去（当然有的用户的server上可能搞了n多个版本的java，那就要依靠版本号啊路径啊这些信息对应上了），然后`sudo /sbin/ldconfig`一下，解决~
