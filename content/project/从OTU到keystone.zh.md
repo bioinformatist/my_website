@@ -127,3 +127,5 @@ plot(sparcc.graph, vertex.label.cex = 0.8, layout=sparcc.graph.layout, asp = 0)
 sparcc.graph <- delete.edges(sparcc.graph, E(sparcc.graph)[ arrow.width < 1.9 ])
 plot(sparcc.graph, vertex.label.cex = 0.8, layout=sparcc.graph.layout, asp = 0)
 ```
+
+![](/img/post_img/keystone taxa network.png)
