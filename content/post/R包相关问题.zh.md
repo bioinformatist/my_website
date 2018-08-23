@@ -118,3 +118,7 @@ In file(filename, "r", encoding = encoding) :
 ```
 
 那就把这个路径（不包括`.so`文件名），加入`/etc/ld.so.conf`里面去（当然有的用户的server上可能搞了n多个版本的java，那就要依靠版本号啊路径啊这些信息对应上了），然后`sudo /sbin/ldconfig`一下，解决~
+
+### igraph报错`At optimal_modularity.c:85 : GLPK is not available, Unimplemented function call`
+
+先尝试`install.packages("Rglpk")`，然后发现又出现了`/bin/sh: line 0: cd: GLPK: No such file or directory`这种奇奇怪怪的错误，我用的是Arch Linux，就直接`aurman -S glpk`解决掉了。其他distribution应该也是对应补上相应工具就好。
