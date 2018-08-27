@@ -122,3 +122,28 @@ In file(filename, "r", encoding = encoding) :
 ### igraph报错`At optimal_modularity.c:85 : GLPK is not available, Unimplemented function call`
 
 先尝试`install.packages("Rglpk")`，然后发现又出现了`/bin/sh: line 0: cd: GLPK: No such file or directory`这种奇奇怪怪的错误，我用的是Arch Linux，就直接`aurman -S glpk`解决掉了。其他distribution应该也是对应补上相应工具就好。
+
+### RStudio初始化一直崩溃：R encountered a fatal error.: Unexpected exception: Mutex creation failed
+
+重启deamon进程也无效。仔细阅读了异常信息之后，发现还[是官方库later的锅](https://github.com/r-lib/later/issues/45)。在别的distribution中也许不会暴露出来，但是由于Arch是滚动更新的，emmmm...
+
+尝试`install.packages('later')`重装一下，果然还是不行（废话当然不行了）：
+
+```pre
+sh: line 1: 13260 Aborted                 (core dumped) '/usr/lib/R/bin/R' --no-save --slave 2>&1 < '/tmp/RtmpWwYeNo/file339a4cc056e4'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Mutex creation failed
+ERROR: loading failed
+* removing ‘/home/ysun/R/x86_64-pc-linux-gnu-library/3.5/later’
+* restoring previous ‘/home/ysun/R/x86_64-pc-linux-gnu-library/3.5/later’
+
+The downloaded source packages are in
+        ‘/tmp/Rtmpr0Mde8/downloaded_packages’
+Warning message:
+In install.packages("later") :
+  installation of package ‘later’ had non-zero exit status
+```
+
+这个时候，官方跳出来补救了，在开发版本中更新了，那么`devtools::install_github("r-lib/later")`就修复了。
+
+只能说用Arch的都是奉献家...
