@@ -40,5 +40,22 @@ caption = ""
 
 对这个东西可能期望高一点，暂时不希望方向被带歪。所以选择不添加许可证了还是，自己写。
 
+以前是用Pycharm做PyQt开发的，但是现在看了很多人的经验之后，觉得还是Eric比较好，python原生的IDE，由于是基于PyQt实现的界面，那么必然也是偏爱一些，那么用起来肯定舒服。
 
+## 环境配置篇
+
+Anaconda最新版，Eric最新版。安装的时候，提示缺少QSci，就自动安装好了。这里马上会出现一个问题，Anaconda已经自带了PyQt了，虽然就不是最新的版本（Anaconda都是很负责的啦，考虑兼容性的）。这样Eric环境配置的时候居然会自动安装新版本的PyQt。
+
+以及有这样一个错误：
+
+```pre
+distributed 1.21.8 requires msgpack, which is not installed.
+```
+
+使用`conda install -c anaconda msgpack-python`补上缺少的库。
+
+```pre
+  The scripts pylupdate5.exe, pyrcc5.exe and pyuic5.exe are installed in 'C:\Users\sun_y\AppData\Roaming\Python\Python36\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+```
 
