@@ -26,14 +26,14 @@ R的生态环境近几年越来越好，但是包管理系统始终...反正我�
 
 ## 更新相关
 
-### R更新之后出现`Error: package * was installed by an R version with different internals; it needs to be reinstalled for use with this R version`
+### R更新之后出现：Error: package * was installed by an R version with different internals; it needs to be reinstalled for use with this R version
 R大版本更新（3.4.3 -> 3.5）之后好多R包不能用了，报错信息如上。重装了一个，又会发现还有其他的包也有这种提示，子子孙孙无穷尽也...
 
 解决方案：运行`update.packages(checkBuilt=TRUE, ask=FALSE)`将有必要更新的一股脑更新了去。
 
 ## 安装相关
 
-### 使用`devtools::install_github()`报错`error setting certificate verify locations`
+### 使用`devtools::install_github()`报错：error setting certificate verify locations
 
 详细如下：
 
@@ -119,7 +119,7 @@ In file(filename, "r", encoding = encoding) :
 
 那就把这个路径（不包括`.so`文件名），加入`/etc/ld.so.conf`里面去（当然有的用户的server上可能搞了n多个版本的java，那就要依靠版本号啊路径啊这些信息对应上了），然后`sudo /sbin/ldconfig`一下，解决~
 
-### igraph报错`At optimal_modularity.c:85 : GLPK is not available, Unimplemented function call`
+### igraph报错：At optimal_modularity.c:85 : GLPK is not available, Unimplemented function call
 
 先尝试`install.packages("Rglpk")`，然后发现又出现了`/bin/sh: line 0: cd: GLPK: No such file or directory`这种奇奇怪怪的错误，我用的是Arch Linux，就直接`aurman -S glpk`解决掉了。其他distribution应该也是对应补上相应工具就好。
 
@@ -147,3 +147,7 @@ In install.packages("later") :
 这个时候，官方跳出来补救了，在开发版本中更新了，那么`devtools::install_github("r-lib/later")`就修复了。
 
 只能说用Arch的都是奉献家...
+
+### install.packages()的时候报错：curl: (60) SSL certificate problem: certificate has expired
+
+折腾了半天，最终发现不是本地的问题，直接`chooseCRANmirror()`换个镜像就好了。
