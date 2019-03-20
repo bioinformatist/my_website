@@ -114,3 +114,48 @@ AttributeError: /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1: undefined symbol: EV
 在Xshell的连接属性里面设置好使用代理（注意端口）。
 
 至此，科学上网/直连/中大代理可以和睦相处了。
+
+## 补充
+
+### 我需要一个service
+
+理想状态下，应该是虚拟机开机自动运行这个openconnect命令的，然后如果崩溃可以自动恢复，所以要把它做成一个service的形式比较好。Ubuntu的这些service一般在`/lib/systemd/system/`，所以在这里面操作吧：
+
+```shell
+cd /lib/systemd/system/
+sudo touch sysu-proxy.service
+```
+
+然后填内容进去：
+
+```pre
+[Unit]
+Description=sysu-proxy
+After=network.target
+StartLimitIntervalSec=0
+StartLimitAction=reboot
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=ysun
+ExecStart=/bin/echo 'passwd' | /usr/sbin/openconnect --no-dtls --script ~/vpnc-script https://ocvpn.sysu.edu.cn --servercert sha256:a0cc6612c7310494b31ad62e76255373f056ac128c8489ac58562f6fe57ae8e9 -u username
+
+[Install]
+WantedBy=multi-user.target
+```
+
+这里面要解释一下的：
+- `Restart=always`可以保证进程挂了就自动重新运行
+- `RestartSec=1`一旦挂了，它就会不断尝试重新运行，那么为了防止某些特定情况下一直重新运行增加服务器负载，还是间隔设置久一点好点（间隔为1秒）
+- `ExecStart=...`对于需要交互式输入密码的，可以用这个技巧，通过管道将特定字符传过去
+- `StartLimitIntervalSec=0`是防止放弃重新运行的。理论上是这样：还有一个参数值，比如`StartLimitBurst=5`，同时再有`StartLimitIntervalSec=10`的话呢，那么就如果在10秒内失败了5次，就放弃运行了（何弃疗！）防止这个情况发生就可以这样设置为0
+- 其实`[Unit]`还可以加上`StartLimitAction=reboot`如果上面设置不是0，崩了，还是可以通过这个方式重启操作系统
+
+好了，接下来就很舒服了：
+
+```shell
+sudo systemctl enable sysu-proxy.service
+sudo systemctl daemon-reload
+sudo systemctl restart sysu-proxy.service
+```
